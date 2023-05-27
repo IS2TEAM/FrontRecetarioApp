@@ -20,15 +20,11 @@ export class ShowRecipesComponent {
 
     const recipe2 = new RecetaModel();
     recipe2.id_recipe = 2;
-    recipe2.instructions = "papas";
+    recipe2.instructions = "Arroz";
     recipe2.timePreparation = "https://www.elespectador.com/resizer/Ei8A62VOKSvSbR9Z99N56v9Y99Q=/arc-anglerfish-arc2-prod-elespectador/public/FXMTS3IDFZG7VJ5EUR56YKYOCE.jpg";
     this.array.push(recipe2);
 
-    const recipe3 = new RecetaModel();
-    recipe3.id_recipe = 3;
-    recipe3.instructions = "sopa";
-    recipe3.timePreparation = "";
-    this.array.push(recipe3);
+
 
   }
 }

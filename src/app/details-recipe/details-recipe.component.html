@@ -1,0 +1,86 @@
+<router-outlet>
+  <div class="card form-group p-5 my-5 mx-5" style="margin-left: 0%">
+    <div id="title" class="card bg-outline-primary  p-10 my-5 mx-5" >
+      <img class= "img-centrada"src="https://www.pro-activ.com/es-es/-/media/Project/Upfield/Brands/ProActiv/ProActiv-ES-Live/Assets/Articles/Header/Subtopic-pages/comida-sana.png?rev=61968c3ae4f24d5ea75de6d3db22984d&w=720" [ngStyle]="{'max-width': imgWidth}" style="width: 1000px;">
+      <div class="card-header ">
+        <p class="parrafo-responsivo">Detalles Receta</p>
+
+      </div>
+    </div>
+
+    <div class="container">
+
+      <div  class="bg-body ">
+        <img src={{service.formDataReceta.recipe_photo}} style="width: 300px; height: 300px; margin-left: 50px;" >
+      </div>
+
+        <div class="form-group">
+          <div class="form-group col-7 p-3">
+            <h3>Nombre de la receta</h3>
+            <!--aqui se debe hacer el direcionamiento para que cuando de click en el nombre lo lleve al panel de ver detalles de la receta !-->
+            <label style="font-weight: normal">{{ service.formDataReceta.recipes_name}}</label>
+
+          </div>
+        </div>
+      <!-- container tabla de todos los ingredientes !-->
+      <div class="card form-group  p-3">
+        <div class="card-body">
+          <h3>Ingredientes</h3>
+
+          <div>
+
+
+            <div class="table-responsive">
+              <hr />
+              <table class="table table-striped table-bordered table-hover">
+                <thead class="table table-bordered header-table" >
+                <tr>
+
+                  <th scope="col" class="col-md text-center" style="vertical-align: middle">Nombre ingrediente</th>
+                  <th scope="col" class="col-md text-center" style="vertical-align: middle">Nombre Tienda</th>
+                  <th scope="col" class="col-md text-center" style="vertical-align : middle">Precio</th>
+
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let item of array">
+                  <td>{{item.name_ingredient}}</td>
+                  <td>{{item.shop}}</td>
+                  <td>{{item.price}}</td>
+
+                </tr>
+                </tbody>
+              </table>
+
+            </div>
+          </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="form-group col-7 p-3">
+            <h3 >Tiempo de preparación</h3>
+            <label style="font-weight: normal">{{ service.formDataReceta.timePreparation}}</label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="form-group col-7 p-3">
+            <h3>Instrucciones de cocción</h3>
+            <label style="font-weight: normal">{{ service.formDataReceta.instructions}}</label>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="form-group col-7 p-3">
+            <h3>Número de porciones</h3>
+            <label style="font-weight: normal">{{ service.formDataReceta.portions}}</label>
+          </div>
+        </div>
+
+    <button class="btn btn-secondary" routerLink="/shoppingList">Comenzar lista de compras</button>
+
+    </div>
+
+</router-outlet>

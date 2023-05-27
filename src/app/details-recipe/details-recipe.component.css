@@ -1,0 +1,10 @@
+.parrafo-responsivo {
+  font-size: 4vw; /* El tamaño de letra se ajusta al 4% del ancho de la ventana */
+  text-align: center
+}
+
+.img-centrada {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}

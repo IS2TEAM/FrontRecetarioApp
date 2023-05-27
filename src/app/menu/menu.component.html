@@ -19,20 +19,20 @@
     <p class="designation">Usuario</p>
     <mat-divider></mat-divider>
 
-    <button mat-button class="menu-button" routerLink="home-component">
+    <button mat-button class="menu-button" routerLink="/show-recipes">
       <mat-icon>home</mat-icon>
       <span>Inicio</span>
     </button>
 
-    <button mat-button class="menu-button" routerLink="/create-recipe" [matMenuTriggerFor]="homeMenu">
+    <button mat-button class="menu-button" routerLink="/create-recipe" >
       <mat-icon>cookie</mat-icon>
-      <span>Recetas</span>
+      <span>Crear Receta</span>
     </button>
 
-    <mat-menu #homeMenu="matMenu">
+    <!--<mat-menu #homeMenu="matMenu">
       <button mat-menu-item routerLink="/create-student">Agregar Receta</button>
       <button mat-menu-item routerLink="view-student">Ver Recetas</button>
-    </mat-menu>
+    </mat-menu>-->
 
     <button class="menu-button" mat-button [matMenuTriggerFor]="profileMenu">
       <mat-icon>library_books</mat-icon>
