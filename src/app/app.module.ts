@@ -24,6 +24,7 @@ import { EditRecipeComponent } from './edit-recipe/edit-recipe.component';
 import { ShowRecipesComponent } from './show-recipes/show-recipes.component';
 import { DetailsRecipeComponent } from './details-recipe/details-recipe.component';
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
+import { MyrecipesComponent } from './myrecipes/myrecipes.component';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { ShoppingListComponent } from './shopping-list/shopping-list.component';
     EditRecipeComponent,
     ShowRecipesComponent,
     DetailsRecipeComponent,
-    ShoppingListComponent
+    ShoppingListComponent,
+    MyrecipesComponent
   ],
   imports: [
     BrowserModule,

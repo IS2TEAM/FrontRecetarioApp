@@ -15,3 +15,7 @@ h3 {
 .parrafo-responsivo {
   font-size: 5vw; /* El tamaño de letra se ajusta al 4% del ancho de la ventana */
 }
+
+.parrafo-responsivo2 {
+  font-size: 2vw; /* El tamaño de letra se ajusta al 4% del ancho de la ventana */
+}

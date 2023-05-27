@@ -35,15 +35,16 @@
         <td>{{item.name_ingredient}}</td>
         <td>{{item.quantity}}</td>
         <td>
-
+          <button (click)="populateForm(item)" [routerLink]="['/edit-myrecipes/', item.id_recipe]"  type="submit"
+                  class="btn btn-primary" style="vertical-align: middle;">Editar
+          </button>
         </td>
         <td>
-
+    <!--          aqui se debe llamar la accion para que cuando pulse el boton se borre la receta-->
+      <button   type="submit"
+              class="btn btn-danger" style="vertical-align: middle;">Borrar </button>
         </td>
 
-        <td>
-
-        </td>
         <td class="col-md text-center" style="vertical-align: middle">
 
         </td>

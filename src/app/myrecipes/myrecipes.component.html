@@ -1,11 +1,11 @@
 <div id="title" class="card bg-outline-primary col-15 p-10 text-align: center" >
-<!--  <img src="https://verdepuro.pe/wp-content/uploads/2021/05/verde-puro-header-recetas-1245x400-1.jpg" [ngStyle]="{'max-width': imgWidth}" style="width: 1000px;">-->
+  <!--  <img src="https://verdepuro.pe/wp-content/uploads/2021/05/verde-puro-header-recetas-1245x400-1.jpg" [ngStyle]="{'max-width': imgWidth}" style="width: 1000px;">-->
   <div class="card-header header">
-    <p class="parrafo-responsivo">Bienvenido RecetarioApp</p>
+    <p class="parrafo-responsivo">Mis Recetas</p>
   </div>
 </div>
 <div>
-<p class="parrafo-responsivo2">¿Qué quieres cocinar hoy?</p>
+  <p class="parrafo-responsivo2"></p>
 </div>
 <div class="container">
   <div class="row">
@@ -18,11 +18,15 @@
           <h3 class="card-title" >{{item.recipes_name}}</h3>
           <a class= "a"(click)="populateForm(item)" [routerLink]="['/details-recipe/', item.id_recipe]">Detalles</a>
           <div>
-
+          <button (click)="populateForm(item)" [routerLink]="['/edit-myrecipes/', item.id_recipe]"  type="submit"
+                  class="btn btn-primary" style="vertical-align: middle;">Editar
+          </button>
           </div>
           <div>
-            <!--          aqui se debe llamar la accion para que cuando pulse el boron se borre la receta-->
-
+<!--          aqui se debe llamar la accion para que cuando pulse el boton se borre la receta-->
+          <button   type="submit"
+                  class="btn btn-danger" style="vertical-align: middle;">Borrar
+          </button>
           </div>
         </div>
       </div>

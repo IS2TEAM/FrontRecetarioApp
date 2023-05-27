@@ -11,13 +11,13 @@
     <div class="container">
 
       <div  class="bg-body ">
-        <img src={{service.formDataReceta.recipe_photo}} style="width: 300px; height: 300px; margin-left: 50px;" >
+        <img src={{service.formDataReceta.recipe_photo}} [ngStyle]="{'max-width': imgWidth}" style="width: 500px;" >
       </div>
 
         <div class="form-group">
           <div class="form-group col-7 p-3">
             <h3>Nombre de la receta</h3>
-            <!--aqui se debe hacer el direcionamiento para que cuando de click en el nombre lo lleve al panel de ver detalles de la receta !-->
+
             <label style="font-weight: normal">{{ service.formDataReceta.recipes_name}}</label>
 
           </div>

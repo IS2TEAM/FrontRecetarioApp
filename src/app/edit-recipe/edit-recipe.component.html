@@ -1,1 +1,91 @@
-<p>edit-recipe works!</p>
+<router-outlet>
+  <div class="card form-group p-5 my-5 mx-5" style="margin-left: 0%">
+    <div id="title" class="card bg-outline-primary col-15 p-10 my-5 mx-5" >
+      <img src="https://www.pro-activ.com/es-es/-/media/Project/Upfield/Brands/ProActiv/ProActiv-ES-Live/Assets/Articles/Header/Subtopic-pages/comida-sana.png?rev=61968c3ae4f24d5ea75de6d3db22984d&w=720" [ngStyle]="{'max-width': imgWidth}" style="width: 1000px;">
+      <div class="card-header ">
+        <p class="parrafo-responsivo">Editar Receta</p>
+
+      </div>
+    </div>
+
+    <div class="container my-5 mx-5">
+
+      <form novalidate autocomplete="off" #form="ngForm"  (submit)="addRecipe(form)">
+        <div class="form-group">
+          <div class="form-group col-7 p-3">
+            <label for="nombreReceta">Nombre de la receta</label>
+            <input type="text" class="form-control" id="nombreReceta" name="nombreReceta" required>
+          </div>
+        </div>
+
+        <div class="card form-group col-7 p-3">
+          <div class="card-body">
+            <h3>Ingredientes</h3>
+            <button routerLink="/view-ingredients" >Ingredientes agregados</button>
+
+            <div class="form-group mt-3">
+              <label for="nombreIngrediente">Nombre del Ingrediente:</label>
+              <select class="form-select" id="nombreIngrediente" name="nombreIngrediente" required>
+                <option value="" disabled selected>Seleccione un ingrediente</option>
+                <option *ngFor="let item of inspectionList" [value]="item.ingredientName">{{ item.ingredientName }}</option>
+              </select>
+            </div>
+            <div class="form-group mt-3">
+              <label for="cantidadIngrediente">Cantidad:</label>
+              <input type="text" class="form-control" id="cantidadIngrediente" name="cantidadIngrediente" required>
+            </div>
+            <div class="mt-3">
+              <button type="submit" class="btn btn-success">Agregar</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="form-group col-7 p-3">
+            <label for="tiempoPreparacion">Tiempo de preparación</label>
+            <input type="text" class="form-control" id="tiempoPreparacion" name="tiempoPreparacion" required>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="form-group col-7 p-3">
+            <label for="instrucciones">Instrucciones de cocción</label>
+            <textarea class="form-control" id="instrucciones" name="instrucciones" required></textarea>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="form-group col-7 p-3">
+            <label for="porciones">Número de porciones</label>
+            <input type="number" class="form-control" id="porciones" name="porciones" required>
+          </div>
+        </div>
+
+
+
+        <div class="container my-5">
+          <div class="card p-3">
+            <label >Imagen de la receta</label>
+            <div class="drop-box border rounded p-5 text-center"
+                 (dragover)="handleDragOver($event)"
+                 (drop)="handleDrop($event)">
+              <i class="fas fa-cloud-upload-alt fa-3x mb-3"></i>
+              <p class="mb-0" *ngIf="!imageUrl">Suelta la imagen aquí o haga clic para cargar</p>
+              <div class="preview-container my-3" *ngIf="imageUrl">
+                <img [src]="sanitizer.bypassSecurityTrustUrl(imageUrl)" alt="Uploaded Image" class="preview-image rounded">
+              </div>
+              <a>{{imageUrl}}</a>
+            </div>
+            <div class="d-flex justify-content-center mt-3">
+              <button class="btn btn-primary" (click)="fileInput.click()">Seleccionar imagen</button>
+              <input type="file" #fileInput style="display:none" (change)="handleFileInput($event)">
+              <button class="btn btn-danger ml-3" [disabled]="!imageUrl" (click)="clearPreview()">Eliminar imagen</button>
+            </div>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Editar receta</button>
+      </form>
+    </div>
+  </div>
+</router-outlet>
