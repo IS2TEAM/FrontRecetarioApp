@@ -14,3 +14,15 @@
 .a{
   font-size: 1vw;
 }
+
+.table-responsive {
+  overflow-x: auto;
+}
+
+@media screen and (max-width: 576px) {
+  /* Estilos para pantallas pequeñas */
+  .table-responsive td,
+  .table-responsive th {
+    font-size: 12px; /* Ajusta el tamaño de fuente según tus necesidades */
+  }
+}

@@ -19,3 +19,10 @@ h3 {
 .parrafo-responsivo2 {
   font-size: 2vw; /* El tamaño de letra se ajusta al 4% del ancho de la ventana */
 }
+
+button.small-screen {
+  /* Estilos para el botón en pantallas pequeñas */
+  /* Por ejemplo, hacerlo más pequeño */
+  font-size: 12px;
+  padding: 5px 10px;
+}

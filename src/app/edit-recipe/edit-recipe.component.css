@@ -15,3 +15,18 @@ h3 {
 .parrafo-responsivo {
   font-size: 5vw; /* El tamaño de letra se ajusta al 4% del ancho de la ventana */
 }
+
+.parrafo-responsivo2 {
+  font-size: 2vw; /* El tamaño de letra se ajusta al 4% del ancho de la ventana */
+}
+
+.responsive-btn {
+  font-size: 16px; /* Tamaño de fuente para pantallas grandes */
+}
+
+@media screen and (max-width: 576px) {
+  .responsive-btn {
+    font-size: 14px; /* Tamaño de fuente para pantallas pequeñas */
+    padding: 5px 10px; /* Ajusta el padding según tus necesidades */
+  }
+}

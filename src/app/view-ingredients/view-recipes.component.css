@@ -1,3 +1,15 @@
 .parrafo-responsivo {
   font-size: 5vw; /* El tamaño de letra se ajusta al 4% del ancho de la ventana */
 }
+
+.table-responsive {
+  overflow-x: auto;
+}
+
+@media screen and (max-width: 576px) {
+  /* Estilos para pantallas pequeñas */
+  .table-responsive td,
+  .table-responsive th {
+    font-size: 12px; /* Ajusta el tamaño de fuente según tus necesidades */
+  }
+}
