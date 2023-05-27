@@ -1,0 +1,65 @@
+<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+<mat-toolbar class="mat-elevation-z8">
+  <button
+    mat-icon-button
+    *ngIf="sidenav.mode === 'over'"
+    (click)="sidenav.toggle()"
+  >
+    <mat-icon *ngIf="!sidenav.opened">menu</mat-icon>
+    <mat-icon *ngIf="sidenav.opened"> close </mat-icon>
+    <!--    <mat-icon>recipe</mat-icon>-->
+  </button>
+</mat-toolbar>
+
+<mat-sidenav-container>
+  <mat-sidenav #sidenav class="mat-elevation-z8"  opened>
+
+
+    <h4 class="name">Nombre Usuario</h4>
+    <p class="designation">Usuario</p>
+    <mat-divider></mat-divider>
+
+    <button mat-button class="menu-button" routerLink="home-component">
+      <mat-icon>home</mat-icon>
+      <span>Inicio</span>
+    </button>
+
+    <button mat-button class="menu-button" routerLink="/create-recipe" [matMenuTriggerFor]="homeMenu">
+      <mat-icon>cookie</mat-icon>
+      <span>Recetas</span>
+    </button>
+
+    <mat-menu #homeMenu="matMenu">
+      <button mat-menu-item routerLink="/create-student">Agregar Receta</button>
+      <button mat-menu-item routerLink="view-student">Ver Recetas</button>
+    </mat-menu>
+
+    <button class="menu-button" mat-button [matMenuTriggerFor]="profileMenu">
+      <mat-icon>library_books</mat-icon>
+      <span>Lista de compras</span>
+    </button>
+
+    <mat-menu #profileMenu="matMenu">
+      <button mat-menu-item routerLink="/create-subject">Agregar Materias</button>
+      <button mat-menu-item routerLink="/view-subject">Ver Materias</button>
+    </mat-menu>
+
+    <!-- <button class="menu-button" mat-button [matMenuTriggerFor]="aboutMenu">
+       <mat-icon>edit</mat-icon>
+       <span>Inscripciones</span>
+     </button>-->
+
+    <!-- <mat-menu #aboutMenu="matMenu">
+       <button mat-menu-item routerLink="/create-inscription">Inscribir materias</button>
+       <button mat-menu-item routerLink="/view-inscription">Ver Inscripciones</button>
+     </mat-menu>-->
+    <mat-divider></mat-divider>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+
+        <div class="content mat-elevation-z4 mat-drawer-backdrop ng-star-inserted mat-drawer-shown"><router-outlet></router-outlet></div>
+
+
+  </mat-sidenav-content>
+</mat-sidenav-container>

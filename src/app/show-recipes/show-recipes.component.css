@@ -1,0 +1,14 @@
+.parrafo-responsivo {
+  font-size: 4vw; /* El tamaño de letra se ajusta al 4% del ancho de la ventana */
+  text-align: center
+}
+.header{
+  background-color: thistle;
+}
+
+.parrafo-responsivo2 {
+  font-size: 2vw; /* El tamaño de letra se ajusta al 4% del ancho de la ventana */
+  text-align: left;
+  font-family: Monaco;
+}
+

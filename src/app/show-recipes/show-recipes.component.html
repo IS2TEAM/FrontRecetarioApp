@@ -1,0 +1,22 @@
+<div id="title" class="card bg-outline-primary col-15 p-10 text-align: center" >
+<!--  <img src="https://verdepuro.pe/wp-content/uploads/2021/05/verde-puro-header-recetas-1245x400-1.jpg" [ngStyle]="{'max-width': imgWidth}" style="width: 1000px;">-->
+  <div class="card-header header">
+    <p class="parrafo-responsivo">Bienvenido RecetarioApp</p>
+  </div>
+</div>
+<div>
+<p class="parrafo-responsivo2">¿Qué quieres cocinar hoy?</p>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4" *ngFor="let item of array">
+      <div class="card mb-4">
+        <img class="card-img-top" [src]="item.timePreparation" alt="Imagen de la receta">
+        <div class="card-body">
+<!--          <h5 class="card-title" *ngIf="item.instructions==='papas'">{{item.instructions}}</h5>-->
+          <h5 class="card-title" >{{item.instructions}}</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
