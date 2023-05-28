@@ -26,11 +26,11 @@ export class AppService {
   }
 
   putIngredient() {
-    return this.http.put(`${this.APIUrl}/ingredient/${this.formDataIngredient.id_ingredient}`, this.formDataReceta);
+    return this.http.put(`${this.APIUrl}/Ingredients/${this.formDataIngredient.idIngredient}`, this.formDataReceta);
   }
 
   deleteIngredient(){
-    return this.http.delete(`${this.APIUrl}/ingredient/${this.formDataIngredient.id_ingredient}`);
+    return this.http.delete(`${this.APIUrl}/Ingredients/${this.formDataIngredient.idIngredient}`);
   }
 
   deleteRecipe(){
@@ -39,7 +39,7 @@ export class AppService {
 
 
   postRecipes() {
-    return this.http.post(this.APIUrl + '/Recipes/url', this.formDataReceta);
+    return this.http.post(this.APIUrl + '/Recipes', this.formDataReceta);
   }
 
   uploadImg(imageFile: File) {
