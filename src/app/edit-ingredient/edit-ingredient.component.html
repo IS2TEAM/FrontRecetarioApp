@@ -1,12 +1,12 @@
 <form novalidate autocomplete="off" #form="ngForm" (submit)="editIngredient(form)">
-<div id="title" class="card bg-outline-primary " >
+<div id="title" class="card bg-outline-primary col-15 p-10 my-5 mx-5" >
   <img src="https://www.interleo.com/wp-content/uploads/2020/06/International-Food-Ingredients-header.png" [ngStyle]="{'max-width': imgWidth}" style="width: 1000px;">
   <div class="card-header ">
     <p class="parrafo-responsivo">Editar Ingrediente</p>
 
   </div>
 </div>
-<div class="card bg-outline-primary ">
+<div class="card bg-outline-primary col-15 p-10 my-5 mx-5">
   <div class="card-body">
     <h3>Ingrediente</h3>
 
@@ -17,7 +17,7 @@
 <!--        <option *ngFor="let item of inspectionList" [value]="item.ingredientName">{{ item.ingredientName }}</option>-->
       </select>
     </div>
-    <div class="form-group">
+    <div class="form-group mt-3">
       <label for="cantidadIngrediente">Cantidad:</label>
       <input type="text" class="form-control" id="cantidadIngrediente" name="cantidadIngrediente" required>
     </div>
