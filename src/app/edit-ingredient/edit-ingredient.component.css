@@ -26,4 +26,10 @@ h3 {
   .table-responsive th {
     font-size: 12px; /* Ajusta el tamaño de fuente según tus necesidades */
   }
+
+
+}
+
+.btn{
+  font-size: 1.2vw;
 }
