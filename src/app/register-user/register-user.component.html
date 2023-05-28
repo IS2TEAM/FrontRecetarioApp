@@ -1,0 +1,37 @@
+<div class="text-center mb-4">
+  <h1>Registro</h1>
+</div>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-lg-6">
+      <div class="card shadow-lg">
+        <div class="card-header">
+          <img src="https://img.freepik.com/vector-gratis/ilustracion-concepto-chef-femenino_114360-12051.jpg?w=740&t=st=1684801870~exp=1684802470~hmac=1a2c6579005c9591d5e099480b01762cb5316c8e7a222679c771d6144b52253a" alt="Logo" class="img-fluid mx-auto d-block mb-3" width="200">
+          <h4 class="text-center mb-0">Crear Cuenta</h4>
+        </div>
+        <div class="card-body">
+       <form novalidate autocomplete="off" #form="ngForm" (submit)="registerUser(form)">
+
+            <div class="form-group">
+              <label for="email">Nombre de Usuario</label>
+              <input type="email" class="form-control" id="user_name" placeholder="Ingresa tu correo electrónico">
+            </div>
+            <div class="form-group">
+              <label for="email">Correo electrónico</label>
+              <input type="email" class="form-control" id="email" placeholder="Ingresa tu correo electrónico">
+            </div>
+            <div class="form-group" >
+              <label for="password">Contraseña</label>
+              <input type="password" class="form-control" id="password" placeholder="Ingresa tu contraseña">
+            </div>
+            <div class="form-group text-center">
+              <button type="submit" class="btn btn-primary">Registrar</button>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+

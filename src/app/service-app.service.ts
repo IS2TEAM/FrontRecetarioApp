@@ -31,6 +31,12 @@ export class AppService {
     return this.http.put(`${this.APIUrl}/ingredient/${this.formDataIngredient.id_ingredient}`, this.formDataReceta);
   }
 
+  putUser() {
+    return this.http.put(`${this.APIUrl}/user/${this.formDataUser.user}`, this.formDataUser);
+  }
+
+
+
   deleteIngredient(){
     return this.http.delete(`${this.APIUrl}/ingredient/${this.formDataIngredient.id_ingredient}`);
   }
@@ -71,8 +77,8 @@ export class AppService {
     return this.http.get<RecetaModel>(`${this.APIUrl}/recipe/${recipeId}`);
   }
 
-  getIngredientById(ingredientId: number): Observable<IngredientModel> {
-    return this.http.get<IngredientModel>(`${this.APIUrl}/recipe/${ingredientId}`);
+  getUserById(ingredientId: number): Observable<UserModel> {
+    return this.http.get<UserModel>(`${this.APIUrl}/recipe/${ingredientId}`);
   }
 
 
