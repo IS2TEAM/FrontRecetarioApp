@@ -15,17 +15,17 @@ export class MyrecipesComponent {
   constructor(public service: AppService) {
     this.array = [];
     const recipe = new RecetaModel();
-    recipe.idRecipe = 1;
-    recipe.recipesName = "Arroz chino"
+    recipe.id_recipe = 1;
+    recipe.recipes_name = "Arroz chino"
     recipe.instructions = "Arroz chino";
-    recipe.recipePhoto = "https://www.elespectador.com/resizer/Ei8A62VOKSvSbR9Z99N56v9Y99Q=/arc-anglerfish-arc2-prod-elespectador/public/FXMTS3IDFZG7VJ5EUR56YKYOCE.jpg";
+    recipe.recipe_photo = "https://www.elespectador.com/resizer/Ei8A62VOKSvSbR9Z99N56v9Y99Q=/arc-anglerfish-arc2-prod-elespectador/public/FXMTS3IDFZG7VJ5EUR56YKYOCE.jpg";
     this.array.push(recipe);
 
     const recipe2 = new RecetaModel();
-    recipe2.idRecipe = 2;
-    recipe2.recipesName = "Arroz chino"
+    recipe2.id_recipe = 2;
+    recipe2.recipes_name = "Arroz chino"
     recipe2.instructions = "Arroz";
-    recipe2.recipePhoto = "https://www.elespectador.com/resizer/Ei8A62VOKSvSbR9Z99N56v9Y99Q=/arc-anglerfish-arc2-prod-elespectador/public/FXMTS3IDFZG7VJ5EUR56YKYOCE.jpg";
+    recipe2.recipe_photo = "https://www.elespectador.com/resizer/Ei8A62VOKSvSbR9Z99N56v9Y99Q=/arc-anglerfish-arc2-prod-elespectador/public/FXMTS3IDFZG7VJ5EUR56YKYOCE.jpg";
     this.array.push(recipe2);
   }
 
