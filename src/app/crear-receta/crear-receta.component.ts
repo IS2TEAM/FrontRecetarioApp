@@ -57,16 +57,19 @@ export class CrearRecetaComponent implements OnInit{
 
   addRecipe(form: NgForm) {
     if (this.imageUrl != null && this.imageFile != null) {
+      //const u = this.imageUrl;
       this.service.formDataReceta.recipePhoto = this.imageUrl;
+      this.service.formDataReceta.userId = 1;
       console.log(this.service.formDataReceta);
-      this.service.uploadImg(this.imageFile).subscribe(
+      /*this.service.uploadImg(this.imageFile).subscribe(
         (res: any) => { // actualización del tipo de dato de la respuesta
           //this.toastr.success('Imagen subida con exito', 'Inscripciones UPTC');
           const imageUrl = res.blobUrl;
           this.service.formDataReceta.recipePhoto = imageUrl.toString();
-          console.log(this.service.formDataReceta);
+          console.log(this.service.formDataReceta);*/
           this.service.postRecipes().subscribe(
             (res: any) => {
+
               //this.toastr.success('Agregado con exito foto', 'Inscripciones UPTC');
               this.resetForm(form);
             },
@@ -74,11 +77,11 @@ export class CrearRecetaComponent implements OnInit{
              // this.toastr.error(err.toString());
             }
           );
-        },
-        (err: any) => {
+        //},
+        //(err: any) => {
           //this.toastr.error(err.toString());
-        }
-      );
+        //}
+     // );
     } else {
       this.service.postRecipes().subscribe(
         (res: any) => {
