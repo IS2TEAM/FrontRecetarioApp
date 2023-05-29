@@ -31,10 +31,7 @@ export class ViewRecipesComponent {
   activoSeleccionado: string ='1';
   listFilter: any[]=[]
 
-  myFunctionName(studentLn: string): void {
-    this.sortBy(studentLn);
-    this.changeIconName();
-  }
+
 
   iconName = 'keyboard_arrow_down';
   clickedName: boolean = true;
@@ -55,10 +52,7 @@ export class ViewRecipesComponent {
     }
   }
 
-  myFunctionSub(studentLn: string): void {
-    this.sortBy(studentLn);
-    this.changeIconLn();
-  }
+
 
   iconSub = 'keyboard_arrow_down';
   clickedSub: boolean = true;
@@ -80,18 +74,11 @@ export class ViewRecipesComponent {
     }
   }
 
-  myFunctionId(studentId: string): void {
-    this.sortBy(studentId);
-    this.changeIconId();
-  }
+
 
   iconDate = 'keyboard_arrow_down';
   clickedDate: boolean = true;
 
-  myFunctionDate(dateInscription: string) {
-    this.sortBy(dateInscription)
-    this.changeIconDate();
-  }
 
   changeIconDate() {
     if (this.clickedId == true) {
@@ -134,101 +121,44 @@ export class ViewRecipesComponent {
     this.service.formDataReceta = Object.assign({}, selectedRecord);
   }
 
-  public getNextPage() {
-    if (this.currentPage < 19000) {//getMaxPage
-      this.getRecipe(this.currentPage = this.currentPage + 1, this.pageSize, this.currentSortOrder, this.curreentSortBy, this.currentNameFilter);
-      this.getNumberNextPage();
-      this.getNumberBackPage();
-    }
-  }
 
-  public getBackPage() {
-    if (this.currentPage > 1) {
-      this.getRecipe(this.currentPage = this.currentPage - 1, this.pageSize, this.currentSortOrder, this.curreentSortBy, this.currentNameFilter);
-      this.actualiceButtons();
-    }
-  }
 
-  public getNumberNextPage() {
-    this.netxPage = this.currentPage + 1;
-  }
-
-  public getNumberBackPage() {
-    this.backPage = this.currentPage - 1;
-  }
-
-  public getPageButtons(page: number) {
-    if (page == 0) {
-      if (this.currentPage < 19000) {///getmaxpage
-        this.getRecipe(this.netxPage, this.pageSize, this.currentSortOrder, this.curreentSortBy, this.currentNameFilter);
-        this.currentPage = this.currentPage + 1;
-        this.actualiceButtons();
-      }
-    } else {
-      if (this.backPage > 0) {
-        this.getRecipe(this.backPage, this.pageSize, this.currentSortOrder, this.curreentSortBy, this.currentNameFilter);
-        this.currentPage = this.currentPage - 1;
-        this.actualiceButtons();
-      }
-    }
-  }
-
-  public sortBy(sortBy: string) {
-    if (this.currentSortOrder === "asc") {
-      this.currentSortOrder = "desc";
-    } else if (this.currentSortOrder === "desc") {
-      this.currentSortOrder = "asc";
-    }
-    this.curreentSortBy = sortBy;
-    this.getRecipe(this.currentPage, this.pageSize, this.currentSortOrder, this.curreentSortBy, this.currentNameFilter);
-  }
 
   filterByName(filter: string) {
     this.currentNameFilter = filter;
-    this.getRecipe(this.currentPage, this.pageSize, this.currentSortOrder, this.curreentSortBy, this.currentNameFilter);
+    //this.getRecipe(this.currentPage, this.pageSize, this.currentSortOrder, this.curreentSortBy, this.currentNameFilter);
   }
 
-  private actualiceButtons() {
-    this.getNumberBackPage();
-    this.getNumberNextPage();
-  }
+
 
   private getMaxPage(): number {
     return (this.tamanio / this.pageSize);
   }
 
   constructor(private RecetasService: RecipeService, public service: AppService) {
+    this.ngOnInit();
 
   }
+
+
+  public ingredientes: IngredientModel[] = [];
 
   ngOnInit(): void {
-    //this.getInscription(1, 10, "asc", "", "");
+    this.inspectionList$ = this.RecetasService.getInspectionList();
+    this.inspectionList$.subscribe((inspectionList) => {
+      this.inspectionList = inspectionList;
+    });
   }
-  public ingredientes: RecetaModel[] = [];
-  getRecipe(pageNumber: number, pageSize: number, sortOrder: string, sortBy: string, searchString: string): void {
-    console.log("entro" + " " + pageSize + " " + sortOrder + " " + sortBy + searchString)
-    this.RecetasService.getRecipe(pageNumber, pageSize, sortOrder, sortBy, searchString).subscribe((response: any) => {
-      this.array = response.body;
-      const tamInscriptions = response.headers.get("tamanio-ingredient");
-      this.tamanio = tamInscriptions;
-      console.log('El valor de tamInscriptions es: ' + tamInscriptions);
+  getInspectionList() {
+    this.inspectionList$ = this.service.getInspectionList();
+    this.inspectionList$.subscribe((inspectionList) => {
+      this.inspectionList = inspectionList;
     });
   }
 
-  sortByName(): void {
-    this.sortColumn = 'subjectName';
-    this.sortAsc = !this.sortAsc;
-    this.inspectionList.sort((a, b) => {
-      const nameA = a.subjectName.toUpperCase();
-      const nameB = b.subjectName.toUpperCase();
-      if (nameA < nameB) {
-        return this.sortAsc ? -1 : 1;
-      }
-      if (nameA > nameB) {
-        return this.sortAsc ? 1 : -1;
-      }
-      return 0;
-    });
-  }
+
+
+
+
 
 }

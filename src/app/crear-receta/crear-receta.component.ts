@@ -4,6 +4,7 @@ import {AppService} from "../service-app.service";
 import {NgForm} from "@angular/forms";
 import {RecetaModel} from "./receta.model";
 import {DomSanitizer} from '@angular/platform-browser';
+import {RecipeService} from "../view-ingredients/RecipeService.service";
 
 
 @Component({
@@ -13,16 +14,30 @@ import {DomSanitizer} from '@angular/platform-browser';
 })
 export class CrearRecetaComponent implements OnInit{
 
-  constructor(public service: AppService,  public sanitizer: DomSanitizer) {
+  constructor(public service: AppService,  public sanitizer: DomSanitizer, public RecetasService: RecipeService) {
+    this.ngOnInit();
+
+
   }
 
   imgWidth = '100%';
   imageUrl: string | null = null;
   imageFile: File | null = null;
   inspectionList$!:Observable<any[]>;
+  ingredientList$!:Observable<any[]>;
   inspectionList: any[]=[];
+  ingredientList: any[]=[];
   ngOnInit(): void {
+    this.ingredientList$ = this.RecetasService.getInspectionList();
+    this.ingredientList$.subscribe((ingredientList) => {
+      this.ingredientList = ingredientList;
+    });
+
   }
+
+
+  formValues: any[] = [];
+
 
   handleDragOver(event: DragEvent) {
     event.preventDefault();
@@ -54,6 +69,22 @@ export class CrearRecetaComponent implements OnInit{
   clearPreview() {
     this.imageUrl = null;
   }
+  addIngredient(formInterno: NgForm) {
+    this.service.formDataIngredientRecipe.idRecipe = 3;
+    this.service.formDataIngredientRecipe.idIngredient = formInterno.value.idIngredient;
+    this.service.postRecipesIngredient(formInterno).subscribe(
+      (res: any) => {
+
+        //this.toastr.success('Agregado con exito foto', 'Inscripciones UPTC');
+        this.resetForm(formInterno);
+      },
+      (err: any) => {
+        // this.toastr.error(err.toString());
+      }
+    );
+  }
+
+
 
   addRecipe(form: NgForm) {
     if (this.imageUrl != null && this.imageFile != null) {

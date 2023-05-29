@@ -6,6 +6,7 @@ import {IngredientModel} from "./crear-receta/ingredients.model";
 import {UserModel} from "./loging/user.model";
 import {PurchasedIngredientsModel} from "./shopping-list/purchasedIngredients.model";
 import {ShoppingListModel} from "./shopping-list/shopping-list.model";
+import {IngredientRecipe} from "./crear-receta/IngredientRecipe";
 
 
 @Injectable({
@@ -20,9 +21,14 @@ export class AppService {
   formDataReceta: RecetaModel = new RecetaModel();
   formDataIngredient : IngredientModel = new IngredientModel();
   formDataUser: UserModel = new UserModel();
+  formDataIngredientRecipe: IngredientRecipe = new IngredientRecipe();
 
   formDataPurchasedIngredientes: PurchasedIngredientsModel = new PurchasedIngredientsModel();
   formDataShopingList: ShoppingListModel = new ShoppingListModel();
+
+  postRecipesIngredient(data:any){
+    return this.http.post(this.APIUrl+'/Recipesingredients', data);
+  }
 
   getInspectionList(): Observable<any[]> {
     return this.http.get<any>(this.APIUrl + '/Recipes');

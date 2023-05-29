@@ -34,9 +34,9 @@
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let item of array">
-            <td>{{item.ingredients.name}}</td>
-            <td>{{item.ingredientes.quantity}}</td>
+          <tr *ngFor="let item of inspectionList">
+            <td>{{item.nameIngredient}}</td>
+            <td>{{item.quantity}}</td>
             <td>
               <button (click)="populateForm(item)" [routerLink]="['/edit-myrecipes/', item.id_recipe]" type="submit"
                       class="btn btn-primary" style="vertical-align: middle;">Editar
