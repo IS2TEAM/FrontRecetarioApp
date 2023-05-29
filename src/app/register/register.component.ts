@@ -1,8 +1,4 @@
 import { Component } from '@angular/core';
-import {AppService} from "../service-app.service";
-import {ToastrService} from "ngx-toastr";
-import {NgForm} from "@angular/forms";
-import {UserModel} from "../loging/user.model";
 
 @Component({
   selector: 'app-register',
@@ -10,26 +6,5 @@ import {UserModel} from "../loging/user.model";
   styleUrls: ['./register.component.css']
 })
 export class RegisterComponent {
-
-  constructor( public service:AppService, private toastr: ToastrService) {
-  }
-
-  registerUser(form: NgForm) {
-    this.service.postUser().subscribe(
-      (res: any) => {
-        this.toastr.success('Usuario creado con exito', 'Inscripciones UPTC');
-        this.resetForm(form);
-      },
-      (err: any) => {
-        this.toastr.error(err);
-      }
-    );
-  }
-
-  resetForm(form: NgForm) {
-    form.form.reset();
-    this.service.formDataUser = new UserModel();
-  };
-
 
 }
