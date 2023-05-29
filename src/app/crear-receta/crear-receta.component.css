@@ -26,3 +26,7 @@ button.small-screen {
   font-size: 12px;
   padding: 5px 10px;
 }
+
+.btn{
+  font-size: 1.2vw;
+}

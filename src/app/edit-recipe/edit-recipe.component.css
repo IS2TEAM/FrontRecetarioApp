@@ -30,3 +30,7 @@ h3 {
     padding: 5px 10px; /* Ajusta el padding según tus necesidades */
   }
 }
+
+.btn{
+  font-size: 1.2vw;
+}
