@@ -3,7 +3,6 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {RecetaModel} from "./crear-receta/receta.model";
 import {IngredientModel} from "./crear-receta/ingredients.model";
-import {UserModel} from "./loging/user.model";
 
 
 @Injectable({
@@ -17,7 +16,6 @@ export class AppService {
 
   formDataReceta: RecetaModel = new RecetaModel();
   formDataIngredient : IngredientModel = new IngredientModel();
-  formDataUser: UserModel = new UserModel();
 
   getInspectionList(): Observable<any[]> {
     return this.http.get<any>(this.APIUrl + '/Recipes');
@@ -42,10 +40,6 @@ export class AppService {
 
   postRecipes() {
     return this.http.post(this.APIUrl + '/Recipes', this.formDataReceta);
-  }
-
-  postUser() {
-    return this.http.post(this.APIUrl + '/recipes/url', this.formDataUser);
   }
 
   uploadImg(imageFile: File) {

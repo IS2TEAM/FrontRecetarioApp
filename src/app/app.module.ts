@@ -25,8 +25,6 @@ import { ShowRecipesComponent } from './show-recipes/show-recipes.component';
 import { DetailsRecipeComponent } from './details-recipe/details-recipe.component';
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { MyrecipesComponent } from './myrecipes/myrecipes.component';
-import { RegisterUserComponent } from './register-user/register-user.component';
-
 
 
 @NgModule({
@@ -42,8 +40,7 @@ import { RegisterUserComponent } from './register-user/register-user.component';
     ShowRecipesComponent,
     DetailsRecipeComponent,
     ShoppingListComponent,
-    MyrecipesComponent,
-    RegisterUserComponent
+    MyrecipesComponent
   ],
   imports: [
     BrowserModule,
