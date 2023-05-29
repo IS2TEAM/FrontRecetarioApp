@@ -5,6 +5,7 @@ import {NgForm} from "@angular/forms";
 import {RecetaModel} from "./receta.model";
 import {DomSanitizer} from '@angular/platform-browser';
 import {RecipeService} from "../view-ingredients/RecipeService.service";
+import {IngredientRecipe} from "./IngredientRecipe";
 
 
 @Component({
@@ -69,14 +70,18 @@ export class CrearRecetaComponent implements OnInit{
   clearPreview() {
     this.imageUrl = null;
   }
-  addIngredient(formInterno: NgForm) {
+  arrayI:any = new IngredientRecipe();
+  addIngredient() {
     this.service.formDataIngredientRecipe.idRecipe = 3;
-    this.service.formDataIngredientRecipe.idIngredient = formInterno.value.idIngredient;
-    this.service.postRecipesIngredient(formInterno).subscribe(
+    this.service.formDataIngredientRecipe.idIngredient = this.service.formDataIngredient.idIngredient;
+    this.service.formDataIngredientRecipe.quantity = this.service.formDataIngredient.quantity;
+    this.service.formDataIngredientRecipe.idRecipeIngredient = 0;
+    this.arrayI = this.service.formDataIngredientRecipe;
+    //console.log("si espicha "+this.service.formDataIngredient.idIngredient);
+    this.service.postRecipesIngredient(this.arrayI).subscribe(
       (res: any) => {
 
-        //this.toastr.success('Agregado con exito foto', 'Inscripciones UPTC');
-        this.resetForm(formInterno);
+
       },
       (err: any) => {
         // this.toastr.error(err.toString());
@@ -128,6 +133,12 @@ export class CrearRecetaComponent implements OnInit{
   resetForm(form: NgForm) {
     form.form.reset();
     this.service.formDataReceta = new RecetaModel();
+    this.imageUrl = null;
+  }
+
+  resetForm2(form: NgForm) {
+    form.form.reset();
+    this.service.formDataIngredientRecipe = new IngredientRecipe();
     this.imageUrl = null;
   }
 

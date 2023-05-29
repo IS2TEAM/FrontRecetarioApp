@@ -30,12 +30,12 @@
 
 
 
-        <form novalidate autocomplete="off" #formInterno="ngForm"  (submit)="addIngredient(formInterno)">
+
         <div class="form-group parrafo-responsivo2">
           <label class= "parrafo-responsivo2" for="nombreIngrediente">Nombre del Ingrediente:</label>
-          <select class="form-select" id="nombreIngrediente" name="nombreIngrediente" required>
+          <select class="form-select" id="nombreIngrediente" name="nombreIngrediente" required [(ngModel)]="service.formDataIngredient.idIngredient">
             <option value="" disabled selected>Seleccione un ingrediente</option>
-            <option *ngFor="let item of ingredientList" [value]="item">{{ item.nameIngredient }}</option>
+            <option *ngFor="let item of ingredientList" [value]="item.idIngredient">{{ item.nameIngredient }}</option>
 
           </select>
         </div>
@@ -47,9 +47,9 @@
                  type="text" required data-error="Por favor, ingrese la cantidad de ingredientes">
         </div>
         <div class="mt-3">
-          <button class="button.small-screen" type="submit" class="btn btn-success" (click)="addIngredient(formInterno)" >Agregar</button>
+          <button class="button.small-screen btn btn-success" type="button" (click)="addIngredient()">Agregar</button>
         </div>
-        </form>
+
 
 
 
