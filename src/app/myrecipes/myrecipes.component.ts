@@ -15,17 +15,17 @@ export class MyrecipesComponent {
   constructor(public service: AppService) {
     this.array = [];
     const recipe = new RecetaModel();
-    recipe.id_recipe = 1;
-    recipe.recipes_name = "Arroz chino"
-    recipe.instructions = "Arroz chino";
-    recipe.recipe_photo = "https://www.elespectador.com/resizer/Ei8A62VOKSvSbR9Z99N56v9Y99Q=/arc-anglerfish-arc2-prod-elespectador/public/FXMTS3IDFZG7VJ5EUR56YKYOCE.jpg";
+    recipe.IdRecipe = 1;
+    recipe.RecipesName = "Arroz chino"
+    recipe.Instructions = "Arroz chino";
+    recipe.RecipePhoto = "https://www.elespectador.com/resizer/Ei8A62VOKSvSbR9Z99N56v9Y99Q=/arc-anglerfish-arc2-prod-elespectador/public/FXMTS3IDFZG7VJ5EUR56YKYOCE.jpg";
     this.array.push(recipe);
 
     const recipe2 = new RecetaModel();
-    recipe2.id_recipe = 2;
-    recipe2.recipes_name = "Arroz chino"
-    recipe2.instructions = "Arroz";
-    recipe2.recipe_photo = "https://www.elespectador.com/resizer/Ei8A62VOKSvSbR9Z99N56v9Y99Q=/arc-anglerfish-arc2-prod-elespectador/public/FXMTS3IDFZG7VJ5EUR56YKYOCE.jpg";
+    recipe2.IdRecipe = 2;
+    recipe2.RecipesName = "Arroz chino"
+    recipe2.Instructions = "Arroz";
+    recipe2.RecipePhoto = "https://www.elespectador.com/resizer/Ei8A62VOKSvSbR9Z99N56v9Y99Q=/arc-anglerfish-arc2-prod-elespectador/public/FXMTS3IDFZG7VJ5EUR56YKYOCE.jpg";
     this.array.push(recipe2);
   }
 

@@ -11,14 +11,14 @@
     <div class="container">
 
       <div  class="bg-body ">
-        <img src={{service.formDataReceta.recipe_photo}} [ngStyle]="{'max-width': imgWidth}" style="width: 500px;" >
+        <img src={{service.formDataReceta.RecipePhoto}} [ngStyle]="{'max-width': imgWidth}" style="width: 500px;" >
       </div>
 
         <div class="form-group">
           <div class="form-group ">
             <h3 class="parrafo-responsivo2">Nombre de la receta</h3>
 
-            <label style="font-weight: normal">{{ service.formDataReceta.recipes_name}}</label>
+            <label style="font-weight: normal">{{ service.formDataReceta.RecipesName}}</label>
 
           </div>
         </div>
@@ -44,9 +44,9 @@
                 </thead>
                 <tbody>
                 <tr *ngFor="let item of array">
-                  <td>{{item.name_ingredient}}</td>
-                  <td>{{item.shop}}</td>
-                  <td>{{item.price}}</td>
+                  <td>{{item.NameIngredient}}</td>
+                  <td>{{item.NameShop}}</td>
+                  <td>{{item.PriceShop}}</td>
 
                 </tr>
                 </tbody>
@@ -61,21 +61,21 @@
         <div class="form-group">
           <div class="form-group">
             <h3 class="parrafo-responsivo2">Tiempo de preparación</h3>
-            <label style="font-weight: normal">{{ service.formDataReceta.timePreparation}}</label>
+            <label style="font-weight: normal">{{ service.formDataReceta.TimePreparation}}</label>
           </div>
         </div>
 
         <div class="form-group">
           <div class="form-group ">
             <h3 class="parrafo-responsivo2">Instrucciones de cocción</h3>
-            <label class="parrafo-responsivo2" style="font-weight: normal">{{ service.formDataReceta.instructions}}</label>
+            <label class="parrafo-responsivo2" style="font-weight: normal">{{ service.formDataReceta.Instructions}}</label>
           </div>
         </div>
 
         <div class="form-group">
           <div class="form-group">
             <h3 class="parrafo-responsivo2">Número de porciones</h3>
-            <label class="parrafo-responsivo2" style="font-weight: normal">{{ service.formDataReceta.portions}}</label>
+            <label class="parrafo-responsivo2" style="font-weight: normal">{{ service.formDataReceta.Portions}}</label>
           </div>
         </div>
 

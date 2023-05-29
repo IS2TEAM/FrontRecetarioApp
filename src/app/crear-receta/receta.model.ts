@@ -2,11 +2,11 @@ import {IngredientModel} from "./ingredients.model";
 
 export class RecetaModel{
 
-id_recipe:number = 0;
-recipes_name:string = '';
-instructions: string = '';
-timePreparation : string = '';
-portions: number = 0;
-recipe_photo:string ='';
-ingredientes: IngredientModel[] = [];
+IdRecipe:number = 0;
+RecipesName:string = '';
+Instructions: string = '';
+TimePreparation : string = '';
+Portions: number = 0;
+RecipePhoto:string ='';
+Recipesingredients: IngredientModel[] = [];
 }

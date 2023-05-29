@@ -1,11 +1,11 @@
 export class IngredientModel {
 
-  id_ingredient: number = 0;
-  name_ingredient: string = '';
-  id_recipe: number = 0;
+  IdIngredient: number = 0;
+  NameIngredient: string = '';
+  IdRecipe: number = 0;
   quantity: string = '';
 
-  shop: string = '';
+  NameShop: string = '';
 
-  price: number = 0;
+  PriceShop: number = 0;
 }

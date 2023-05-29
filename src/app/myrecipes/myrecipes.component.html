@@ -11,14 +11,14 @@
   <div class="row">
     <div class="col-md-4" *ngFor="let item of array">
       <div class="card mb-4">
-        <img class="card-img-top" [src]="item.recipe_photo" [ngStyle]="{'max-width': imgWidth}" style="width: 500px;">
+        <img class="card-img-top" [src]="item.RecipePhoto" [ngStyle]="{'max-width': imgWidth}" style="width: 500px;">
         <div class="card-body">
           <!--          <h5 class="card-title" *ngIf="item.instructions==='papas'">{{item.instructions}}</h5>-->
 
-          <h3 class="card-title" >{{item.recipes_name}}</h3>
-          <a class= "a"(click)="populateForm(item)" [routerLink]="['/details-recipe/', item.id_recipe]">Detalles</a>
+          <h3 class="card-title" >{{item.RecipesName}}</h3>
+          <a class= "a"(click)="populateForm(item)" [routerLink]="['/details-recipe/', item.IdRecipe]">Detalles</a>
           <div>
-          <button (click)="populateForm(item)" [routerLink]="['/edit-myrecipes/', item.id_recipe]"  type="submit"
+          <button (click)="populateForm(item)" [routerLink]="['/edit-myrecipes/', item.IdRecipe]" type="submit"
                   class="btn btn-primary" style="vertical-align: middle;">Editar
           </button>
           </div>
