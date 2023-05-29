@@ -23,6 +23,10 @@ export class AppService {
     return this.http.get<any>(this.APIUrl + '/Recipes');
   }
 
+  getRecipeUserById(recipeId: number): Observable<any[]> {
+    return this.http.get<any>(this.APIUrl + '/Recipes/byUser?idUser='+recipeId);
+  }
+
  putRecipes() {
     return this.http.put(`${this.APIUrl}/Recipes/${this.formDataReceta.idRecipe}`, this.formDataReceta);
   }
