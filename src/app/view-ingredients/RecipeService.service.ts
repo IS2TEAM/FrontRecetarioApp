@@ -6,7 +6,7 @@ import {Observable} from "rxjs";
   providedIn: 'root'
 })
 export class RecipeService {
-  private baseUrlRecipeGetAll: string | null = '';
+  private baseUrlRecipeGetAll: string | null = 'https://localhost:7045/api/Ingredients';
 
   constructor(private http: HttpClient) {
   }

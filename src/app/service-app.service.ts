@@ -22,19 +22,19 @@ export class AppService {
   }
 
  putRecipes() {
-    return this.http.put(`${this.APIUrl}/Recipes/${this.formDataReceta.IdRecipe}`, this.formDataReceta);
+    return this.http.put(`${this.APIUrl}/Recipes/${this.formDataReceta.idRecipe}`, this.formDataReceta);
   }
 
   putIngredient() {
-    return this.http.put(`${this.APIUrl}/Ingredients/${this.formDataIngredient.IdIngredient}`, this.formDataReceta);
+    return this.http.put(`${this.APIUrl}/Ingredients/${this.formDataIngredient.idIngredient}`, this.formDataReceta);
   }
 
   deleteIngredient(){
-    return this.http.delete(`${this.APIUrl}/Ingredients/${this.formDataIngredient.IdIngredient}`);
+    return this.http.delete(`${this.APIUrl}/Ingredients/${this.formDataIngredient.idIngredient}`);
   }
 
   deleteRecipe(){
-    return this.http.delete(`${this.APIUrl}/Recipes/${this.formDataReceta.IdRecipe}`);
+    return this.http.delete(`${this.APIUrl}/Recipes/${this.formDataReceta.idRecipe}`);
   }
 
 
@@ -44,7 +44,7 @@ export class AppService {
 
   uploadImg(imageFile: File) {
     const formData = new FormData();
-    const newFileName = this.formDataReceta.RecipesName + this.formDataReceta.IdRecipe + ".jpg";
+    const newFileName = this.formDataReceta.recipesName + this.formDataReceta.idRecipe + ".jpg";
     formData.append('file', imageFile, newFileName);
     return this.http.post<string>(this.APIUrl+'/Recipes/uploadImage', formData);
   }
@@ -55,8 +55,8 @@ export class AppService {
 
   updateInspection(id: number) {
     const data = {
-      recipeId: this.formDataReceta.IdRecipe,
-      recipeName: this.formDataReceta.RecipesName
+      recipeId: this.formDataReceta.idRecipe,
+      recipeName: this.formDataReceta.recipesName
     }
     return this.http.put(this.APIUrl+`/Recipes/${id}`,data);
   }

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {RecetaModel} from "../crear-receta/receta.model";
 import {AppService} from "../service-app.service";
 import {RecipeService} from "./RecipeService.service";
+import {IngredientModel} from "../crear-receta/ingredients.model";
 
 @Component({
   selector: 'app-view-ingredients',
@@ -188,20 +189,23 @@ export class ViewRecipesComponent {
   }
 
   constructor(private RecetasService: RecipeService, public service: AppService) {
+
   }
 
   ngOnInit(): void {
     //this.getInscription(1, 10, "asc", "", "");
   }
-
+  public ingredientes: RecetaModel[] = [];
   getRecipe(pageNumber: number, pageSize: number, sortOrder: string, sortBy: string, searchString: string): void {
-    /*console.log("entro" + " " + pageSize + " " + sortOrder + " " + sortBy + searchString)
-    this.service.getInscriptions(pageNumber, pageSize, sortOrder, sortBy, searchString).subscribe((response: any) => {
+    console.log("entro" + " " + pageSize + " " + sortOrder + " " + sortBy + searchString)
+    this.RecetasService.getRecipe(pageNumber, pageSize, sortOrder, sortBy, searchString).subscribe((response: any) => {
       this.array = response.body;
-      const tamInscriptions = response.headers.get("tamanio-inscriptions");
+      const tamInscriptions = response.headers.get("tamanio-ingredient");
       this.tamanio = tamInscriptions;
       console.log('El valor de tamInscriptions es: ' + tamInscriptions);
-    });*/
+    });
   }
+
+
 
 }

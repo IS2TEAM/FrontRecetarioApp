@@ -57,13 +57,13 @@ export class CrearRecetaComponent implements OnInit{
 
   addRecipe(form: NgForm) {
     if (this.imageUrl != null && this.imageFile != null) {
-      this.service.formDataReceta.RecipePhoto = this.imageUrl;
+      this.service.formDataReceta.recipePhoto = this.imageUrl;
       console.log(this.service.formDataReceta);
       this.service.uploadImg(this.imageFile).subscribe(
         (res: any) => { // actualización del tipo de dato de la respuesta
           //this.toastr.success('Imagen subida con exito', 'Inscripciones UPTC');
           const imageUrl = res.blobUrl;
-          this.service.formDataReceta.RecipePhoto = imageUrl.toString();
+          this.service.formDataReceta.recipePhoto = imageUrl.toString();
           console.log(this.service.formDataReceta);
           this.service.postRecipes().subscribe(
             (res: any) => {
