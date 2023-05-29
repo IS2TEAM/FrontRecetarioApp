@@ -12,6 +12,7 @@ import {MyrecipesComponent} from "./myrecipes/myrecipes.component";
 import {EditRecipeComponent} from "./edit-recipe/edit-recipe.component";
 import {DetailsRecipeComponent} from "./details-recipe/details-recipe.component";
 
+
 const routes: Routes = [
   // {path: '', component: ViewRecipesComponent},
   {path: 'loging', component: LogingComponent },

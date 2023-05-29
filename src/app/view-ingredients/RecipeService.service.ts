@@ -9,6 +9,7 @@ export class RecipeService {
   private baseUrlRecipeGetAll: string | null = 'https://localhost:7045/api/Ingredients';
 
   constructor(private http: HttpClient) {
+
   }
 
   getRecipe(pageNumber: number = 50, pageSize: number = 10, sortOrder: string = "asc", sortBy: string = "", searchString: string = ""): Observable<any> {

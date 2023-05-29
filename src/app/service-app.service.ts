@@ -3,6 +3,7 @@ import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {RecetaModel} from "./crear-receta/receta.model";
 import {IngredientModel} from "./crear-receta/ingredients.model";
+import {UserModel} from "./loging/user.model";
 
 
 @Injectable({
@@ -16,6 +17,7 @@ export class AppService {
 
   formDataReceta: RecetaModel = new RecetaModel();
   formDataIngredient : IngredientModel = new IngredientModel();
+  formDataUser: UserModel = new UserModel();
 
   getInspectionList(): Observable<any[]> {
     return this.http.get<any>(this.APIUrl + '/Recipes');
@@ -29,6 +31,10 @@ export class AppService {
     return this.http.put(`${this.APIUrl}/Ingredients/${this.formDataIngredient.idIngredient}`, this.formDataReceta);
   }
 
+  putUser() {
+    return this.http.put(`${this.APIUrl}/user/${this.formDataUser.user}`, this.formDataUser);
+  }
+
   deleteIngredient(){
     return this.http.delete(`${this.APIUrl}/Ingredients/${this.formDataIngredient.idIngredient}`);
   }
@@ -40,6 +46,10 @@ export class AppService {
 
   postRecipes() {
     return this.http.post(this.APIUrl + '/Recipes', this.formDataReceta);
+  }
+
+  postUser() {
+    return this.http.post(this.APIUrl + '/recipes/url', this.formDataUser);
   }
 
   uploadImg(imageFile: File) {
@@ -67,6 +77,10 @@ export class AppService {
 
   getIngredientById(ingredientId: number): Observable<IngredientModel> {
     return this.http.get<IngredientModel>(`${this.APIUrl}/Recipes/${ingredientId}`);
+  }
+
+  getUserById(ingredientId: number): Observable<UserModel> {
+    return this.http.get<UserModel>(`${this.APIUrl}/recipe/${ingredientId}`);
   }
 
 
