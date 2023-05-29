@@ -4,6 +4,8 @@ import {Observable} from 'rxjs';
 import {RecetaModel} from "./crear-receta/receta.model";
 import {IngredientModel} from "./crear-receta/ingredients.model";
 import {UserModel} from "./loging/user.model";
+import {PurchasedIngredientsModel} from "./shopping-list/purchasedIngredients.model";
+import {ShoppingListModel} from "./shopping-list/shopping-list.model";
 
 
 @Injectable({
@@ -18,6 +20,9 @@ export class AppService {
   formDataReceta: RecetaModel = new RecetaModel();
   formDataIngredient : IngredientModel = new IngredientModel();
   formDataUser: UserModel = new UserModel();
+
+  formDataPurchasedIngredientes: PurchasedIngredientsModel = new PurchasedIngredientsModel();
+  formDataShopingList: ShoppingListModel = new ShoppingListModel();
 
   getInspectionList(): Observable<any[]> {
     return this.http.get<any>(this.APIUrl + '/Recipes');

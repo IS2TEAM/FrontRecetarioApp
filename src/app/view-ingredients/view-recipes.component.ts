@@ -3,7 +3,7 @@ import {RecetaModel} from "../crear-receta/receta.model";
 import {AppService} from "../service-app.service";
 import {RecipeService} from "./RecipeService.service";
 import {IngredientModel} from "../crear-receta/ingredients.model";
-
+import {Observable, of} from "rxjs";
 @Component({
   selector: 'app-view-ingredients',
   templateUrl: './view-recipes.component.html',
@@ -21,6 +21,15 @@ export class ViewRecipesComponent {
   curreentSortBy: string = "desc";
   currentNameFilter: string = "";
   tamanio: number = 0;
+
+  public page: number=1;
+  inspectionList$!:Observable<any[]>;
+  inspectionList: any[]=[];
+  sortColumn: string = 'name';
+  sortAsc: boolean = true;
+  selectedState = 1;
+  activoSeleccionado: string ='1';
+  listFilter: any[]=[]
 
   myFunctionName(studentLn: string): void {
     this.sortBy(studentLn);
@@ -206,6 +215,20 @@ export class ViewRecipesComponent {
     });
   }
 
-
+  sortByName(): void {
+    this.sortColumn = 'subjectName';
+    this.sortAsc = !this.sortAsc;
+    this.inspectionList.sort((a, b) => {
+      const nameA = a.subjectName.toUpperCase();
+      const nameB = b.subjectName.toUpperCase();
+      if (nameA < nameB) {
+        return this.sortAsc ? -1 : 1;
+      }
+      if (nameA > nameB) {
+        return this.sortAsc ? 1 : -1;
+      }
+      return 0;
+    });
+  }
 
 }

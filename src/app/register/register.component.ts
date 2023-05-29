@@ -11,17 +11,19 @@ import {UserModel} from "../loging/user.model";
 })
 export class RegisterComponent {
 
-  constructor( public service:AppService, private toastr: ToastrService) {
+  constructor( public service:AppService
+/*                , public toastr: ToastrService*/
+  ) {
   }
 
   registerUser(form: NgForm) {
     this.service.postUser().subscribe(
       (res: any) => {
-        this.toastr.success('Usuario creado con exito', 'Inscripciones UPTC');
+         // this.toastr.success('Usuario creado con exito', 'Inscripciones UPTC');
         this.resetForm(form);
       },
       (err: any) => {
-        this.toastr.error(err);
+         //this.toastr.error(err);
       }
     );
   }

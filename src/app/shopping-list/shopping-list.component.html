@@ -6,31 +6,41 @@
 
 
       <div class="table-responsive">
-        <hr />
-        <table class="table table-striped table-bordered table-hover">
-          <thead class="table table-bordered header-table" >
-          <tr>
+        <hr/>
 
-            <th scope="col" class="col-md text-center" style="vertical-align: middle">Nombre ingrediente</th>
-            <th scope="col" class="col-md text-center" style="vertical-align: middle">Nombre Tienda</th>
-            <th scope="col" class="col-md text-center" style="vertical-align : middle">Precio</th>
+      <div class="container">
+          <table class="table table-striped table-bordered table-hover table table-reflow table-responsive">
+            <thead class="table table-success">
+            <tr>
+              <th>Nombre Ingrediente</th>
+              <th class="text-left">
+                <div class="d-flex justify-content-between">
+                  <span>Nombre Tienda</span>
 
-          </tr>
-          </thead>
-          <tbody>
-          <tr>
-<!--          <tr *ngFor="let item of array">-->
-            <td>name aqui</td>
-<!--            <td>{{item.name_ingredient}}</td>-->
-            <td> <input type="text" ></td>
-            <td><input type="text" ></td>
+                </div>
+              </th>
+              <th>Precio</th>
 
-          </tr>
-          </tbody>
-        </table>
-<button class="btn-primary">Guardar</button>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <!--          <tr *ngFor="let item of array">-->
+              <td>name aqui</td>
+
+              <!--            <td>{{item.name_ingredient}}</td>-->
+              <td><input type="text"></td>
+              <td><input type="text"></td>
+            </tr>
+            </tbody>
+          </table>
+          <pagination-controls (pageChange)="page = $event" previousLabel="Anterior"
+                               nextLabel="Siguiente"></pagination-controls>
+        </div>
       </div>
     </div>
-  </div>
-</div>
+        <button class="btn-primary">Guardar</button>
+      </div>
+    </div>
+
 

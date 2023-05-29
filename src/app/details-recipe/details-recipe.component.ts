@@ -10,7 +10,10 @@ import {ActivatedRoute} from "@angular/router";
   styleUrls: ['./details-recipe.component.css']
 })
 export class DetailsRecipeComponent {
-
+  inspectionList: any[]=[];
+  activoSeleccionado: string ='1';
+  selectedState = 1
+  public page: number=1;
   public array: IngredientModel[];
   imgWidth = '100%';
   constructor(
@@ -27,4 +30,6 @@ export class DetailsRecipeComponent {
     this.array.push(ingredient);*/
 
   }
+
+
 }

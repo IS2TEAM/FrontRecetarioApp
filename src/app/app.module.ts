@@ -26,7 +26,8 @@ import { DetailsRecipeComponent } from './details-recipe/details-recipe.componen
 import { ShoppingListComponent } from './shopping-list/shopping-list.component';
 import { MyrecipesComponent } from './myrecipes/myrecipes.component';
 import { RegisterUserComponent } from './register-user/register-user.component';
-
+import {FilterPipe} from "./pies/filter.pipe";
+import {NgxPaginationModule} from "ngx-pagination";
 
 
 @NgModule({
@@ -43,7 +44,8 @@ import { RegisterUserComponent } from './register-user/register-user.component';
     DetailsRecipeComponent,
     ShoppingListComponent,
     MyrecipesComponent,
-    RegisterUserComponent
+    RegisterUserComponent,
+    FilterPipe
   ],
   imports: [
     BrowserModule,
@@ -57,7 +59,7 @@ import { RegisterUserComponent } from './register-user/register-user.component';
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule, NgxPaginationModule
   ],
   providers: [],
   bootstrap: [AppComponent]

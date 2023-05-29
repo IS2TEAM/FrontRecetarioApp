@@ -10,6 +10,8 @@ import {AppService} from "../service-app.service";
 export class ShowRecipesComponent {
   imgWidth = '100%';
   public array: RecetaModel[];
+  selectedState = 1
+  public page: number=1;
 
   constructor(public service: AppService) {
     this.array = [];
