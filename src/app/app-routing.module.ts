@@ -14,18 +14,29 @@ import {DetailsRecipeComponent} from "./details-recipe/details-recipe.component"
 
 
 const routes: Routes = [
-  // {path: '', component: ViewRecipesComponent},
-  {path: 'loging', component: LogingComponent },
+  {path: 'myrecipes', component: MyrecipesComponent},
   {path: 'register', component: RegisterComponent},
   {path: 'view-ingredients', component: ViewRecipesComponent},
   {path: 'create-recipe', component: CrearRecetaComponent},
-  {path: 'menu', component: MenuComponent},
+  {path: 'show-recipes', component: ShowRecipesComponent},
+  {path: 'shoppingList', component: ShoppingListComponent},
+  {path: 'myrecipes', component: MyrecipesComponent},
+  {path: 'edit-myrecipes/:id', component: EditRecipeComponent},
+  {path: 'details-recipe/:id', component: DetailsRecipeComponent},
+  {path: 'login', component: LogingComponent},
+
+  {path: "", component: LogingComponent },
+  {path: 'menu', component: MenuComponent, children:[
+  {path: 'register', component: RegisterComponent},
+  {path: 'view-ingredients', component: ViewRecipesComponent},
+  {path: 'create-recipe', component: CrearRecetaComponent},
   {path: 'show-recipes', component: ShowRecipesComponent},
   {path: 'shoppingList', component: ShoppingListComponent},
   {path: 'myrecipes', component: MyrecipesComponent},
   {path: 'edit-myrecipes/:id', component: EditRecipeComponent},
   {path: 'details-recipe/:id', component: DetailsRecipeComponent}
-
+]
+},
 ];
 @NgModule({
   declarations: [],

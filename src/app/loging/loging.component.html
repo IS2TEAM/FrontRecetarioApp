@@ -10,7 +10,9 @@
           <h4 class="text-center mb-0">Iniciar sesión</h4>
         </div>
         <div class="card-body">
-          <form>
+          <form novalidate autocomplete="off" #form="ngForm" >
+<!--                (submit)="getLogin()"-->
+
             <div class="form-group">
               <label for="user_name">Nombre de usuario</label>
               <input type="email" class="form-control" id="user_name" placeholder="Ingresa tu correo electrónico">

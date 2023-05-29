@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 import {AppService} from "../service-app.service";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {NgForm} from "@angular/forms";
 import {UserModel} from "./user.model";
+import { Routes, RouterModule } from '@angular/router';
+import {DataService} from "../shared/data.service";
 
 @Component({
   selector: 'app-loging',
@@ -10,14 +12,17 @@ import {UserModel} from "./user.model";
   styleUrls: ['./loging.component.css']
 })
 export class LogingComponent {
+  inputValue: string = '';
   constructor(
+    public dataService: DataService,
+
     public service: AppService,
-    private route: ActivatedRoute
+    private route: Router
   ) {
 
 
   }
-  putUser(id: number) {
+ /* putUser(id: number) {
 
       this.service.putUser().subscribe(
         res => {
@@ -30,10 +35,10 @@ export class LogingComponent {
         }
       );
 
-  }
+  }*/
 
-  getLogin(id: number) {
-    this.service.getUserById(id).subscribe(
+/*  getLogin() {
+        this.service.getLoging().subscribe(
       res => {
         // this.toastr.success(res.toString());
         const tokenString = JSON.stringify(res);
@@ -46,8 +51,26 @@ export class LogingComponent {
         console.log(err);
       }
     );
+  }*/
+
+ getLogin(){
+    this.service.getLoging().subscribe(
+      isValid => {
+        if (isValid) {
+          this.route.navigate(['/menu']);
+        } else {
+          // Realizar acciones adicionales si la validación falla
+        }
+      },
+      err => {
+        // Manejar errores si es necesario
+      }
+    )
   }
 
+  updateInputValue() {
+    this.dataService.setInputValue(this.inputValue);
+  }
 
   resetForm(form: NgForm) {
     form.form.reset();

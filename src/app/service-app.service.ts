@@ -6,6 +6,7 @@ import {IngredientModel} from "./crear-receta/ingredients.model";
 import {UserModel} from "./loging/user.model";
 import {PurchasedIngredientsModel} from "./shopping-list/purchasedIngredients.model";
 import {ShoppingListModel} from "./shopping-list/shopping-list.model";
+import { tap, map } from 'rxjs/operators';
 
 
 @Injectable({
@@ -34,6 +35,24 @@ export class AppService {
 
  putRecipes() {
     return this.http.put(`${this.APIUrl}/Recipes/${this.formDataReceta.idRecipe}`, this.formDataReceta);
+  }
+
+/*  getLoging() {
+    const key = `${this.formDataUser.email}`;
+    const value = `${this.formDataUser.pasword}`;
+    return this.http.get(`${this.APIUrl}/Users/Login/${key},${value}`).;
+  }*/
+
+  getLoging() {
+    const key = `${this.formDataUser.email}`;
+    const value = `${this.formDataUser.pasword}`;
+    return this.http.get(`${this.APIUrl}/Users/Login/${key},${value}`).pipe(
+      tap((response: any) => {
+        // Realizar acciones adicionales aquí si es necesario
+        console.log(response); // Puedes imprimir la respuesta para verificarla en la consola
+      }),
+      map((response: any) => response === true) // Convertir la respuesta en un valor booleano
+    );
   }
 
   putIngredient() {
