@@ -9,7 +9,7 @@ import {IngredientModel} from "./crear-receta/ingredients.model";
   providedIn: 'root'
 })
 export class AppService {
-  readonly APIUrl = "/api";
+  readonly APIUrl = "https://localhost:7045/api";
 
   constructor(private http: HttpClient) {
   }
@@ -18,55 +18,55 @@ export class AppService {
   formDataIngredient : IngredientModel = new IngredientModel();
 
   getInspectionList(): Observable<any[]> {
-    return this.http.get<any>(this.APIUrl + '/recipes');
+    return this.http.get<any>(this.APIUrl + '/Recipes');
   }
 
  putRecipes() {
-    return this.http.put(`${this.APIUrl}/recipes/${this.formDataReceta.id_recipe}`, this.formDataReceta);
+    return this.http.put(`${this.APIUrl}/Recipes/${this.formDataReceta.idRecipe}`, this.formDataReceta);
   }
 
   putIngredient() {
-    return this.http.put(`${this.APIUrl}/ingredient/${this.formDataIngredient.id_ingredient}`, this.formDataReceta);
+    return this.http.put(`${this.APIUrl}/Ingredients/${this.formDataIngredient.idIngredient}`, this.formDataReceta);
   }
 
   deleteIngredient(){
-    return this.http.delete(`${this.APIUrl}/ingredient/${this.formDataIngredient.id_ingredient}`);
+    return this.http.delete(`${this.APIUrl}/Ingredients/${this.formDataIngredient.idIngredient}`);
   }
 
   deleteRecipe(){
-    return this.http.delete(`${this.APIUrl}/recipe/${this.formDataReceta.id_recipe}`);
+    return this.http.delete(`${this.APIUrl}/Recipes/${this.formDataReceta.idRecipe}`);
   }
 
 
   postRecipes() {
-    return this.http.post(this.APIUrl + '/recipes/url', this.formDataReceta);
+    return this.http.post(this.APIUrl + '/Recipes', this.formDataReceta);
   }
 
   uploadImg(imageFile: File) {
     const formData = new FormData();
-    const newFileName = this.formDataReceta.recipes_name + this.formDataReceta.id_recipe + ".jpg";
+    const newFileName = this.formDataReceta.recipesName + this.formDataReceta.idRecipe + ".jpg";
     formData.append('file', imageFile, newFileName);
-    return this.http.post<string>(this.APIUrl+'/recipe/uploadImage', formData);
+    return this.http.post<string>(this.APIUrl+'/Recipes/uploadImage', formData);
   }
 
   addInspection(data: any) {
-    return this.http.post(this.APIUrl + '/Recipe', data);
+    return this.http.post(this.APIUrl + '/Recipes', data);
   }
 
   updateInspection(id: number) {
     const data = {
-      recipeId: this.formDataReceta.id_recipe,
-      recipeName: this.formDataReceta.recipes_name
+      recipeId: this.formDataReceta.idRecipe,
+      recipeName: this.formDataReceta.recipesName
     }
-    return this.http.put(this.APIUrl+`/recipe/${id}`,data);
+    return this.http.put(this.APIUrl+`/Recipes/${id}`,data);
   }
 
   getRecipeById(recipeId: number): Observable<RecetaModel> {
-    return this.http.get<RecetaModel>(`${this.APIUrl}/recipe/${recipeId}`);
+    return this.http.get<RecetaModel>(`${this.APIUrl}/Recipes/${recipeId}`);
   }
 
   getIngredientById(ingredientId: number): Observable<IngredientModel> {
-    return this.http.get<IngredientModel>(`${this.APIUrl}/recipe/${ingredientId}`);
+    return this.http.get<IngredientModel>(`${this.APIUrl}/Recipes/${ingredientId}`);
   }
 
 
