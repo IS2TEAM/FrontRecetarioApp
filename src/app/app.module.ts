@@ -11,7 +11,7 @@ import {MatDividerModule} from '@angular/material/divider';
 import {MatMenuModule} from '@angular/material/menu';
 import {AppRoutingModule} from "./app-routing.module";
 import {HttpClientModule} from "@angular/common/http";
-
+import { ToastrModule } from 'ngx-toastr';
 import {FormsModule} from "@angular/forms";
 import { LogingComponent } from './loging/loging.component';
 import { RegisterComponent } from './register/register.component';
@@ -45,7 +45,7 @@ import {NgxPaginationModule} from "ngx-pagination";
     ShoppingListComponent,
     MyrecipesComponent,
     RegisterUserComponent,
-    FilterPipe
+    FilterPipe,
   ],
   imports: [
     BrowserModule,
@@ -59,9 +59,11 @@ import {NgxPaginationModule} from "ngx-pagination";
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    BrowserAnimationsModule, NgxPaginationModule
+    NgxPaginationModule,
+    BrowserAnimationsModule, // required animations module
+    ToastrModule.forRoot(),
   ],
-  providers: [],
+  providers: [AppComponent],
   bootstrap: [AppComponent]
 })
 

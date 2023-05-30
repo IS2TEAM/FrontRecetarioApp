@@ -6,7 +6,7 @@ import {AppService} from "../service-app.service";
 import {DomSanitizer} from "@angular/platform-browser";
 import {ActivatedRoute} from "@angular/router";
 import {IngredientModel} from "../crear-receta/ingredients.model";
-import {IngredientRecipe} from "../crear-receta/IngredientRecipe";
+import {IngredientRecipeModel} from "../crear-receta/IngredientRecipe.model";
 import {DatosCompartidosService} from "../DatosCompartidosService";
 
 @Component({
@@ -80,12 +80,11 @@ export class EditRecipeComponent {
   }
 
 
-  convertArray(ingredients: IngredientModel[], idRecipe: number): IngredientRecipe[] {
-    const convertedArray: IngredientRecipe[] = [];
+  convertArray(ingredients: IngredientModel[], idRecipe: number): IngredientRecipeModel[] {
+    const convertedArray: IngredientRecipeModel[] = [];
 
     for (const ingredient of ingredients) {
-      const convertedIngredient: IngredientRecipe = {
-        idRecipeIngredient: 0,
+      const convertedIngredient: IngredientRecipeModel = {
         idIngredient: ingredient.idIngredient,
         idRecipe: idRecipe,
         quantity: ingredient.quantity,

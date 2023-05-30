@@ -16,7 +16,7 @@
           <!--          <h5 class="card-title" *ngIf="item.instructions==='papas'">{{item.instructions}}</h5>-->
 
           <h3 class="card-title" >{{item.recipesName}}</h3>
-          <a class= "a"(click)="populateForm(item)" [routerLink]="['/details-recipe/', item.idRecipe]">Detalles</a>
+          <a class= "a"(click)="populateForm(item)" [routerLink]="['../details-recipe/', item.idRecipe]">Detalles</a>
           <div>
 
           </div>
