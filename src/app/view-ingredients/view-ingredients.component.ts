@@ -7,10 +7,10 @@ import {Observable, of} from "rxjs";
 import { DatosCompartidosService } from '../DatosCompartidosService';
 @Component({
   selector: 'app-view-ingredients',
-  templateUrl: './view-recipes.component.html',
-  styleUrls: ['./view-recipes.component.css']
+  templateUrl: './view-ingredients.component.html',
+  styleUrls: ['./view-ingredients.component.css']
 })
-export class ViewRecipesComponent {
+export class ViewIngredientsComponent {
 
   imgWidth = '100%';
   public array: any[] = [];

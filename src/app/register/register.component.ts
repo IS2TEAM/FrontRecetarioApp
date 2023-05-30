@@ -21,6 +21,7 @@ export class RegisterComponent {
       (res: any) => {
          // this.toastr.success('Usuario creado con exito', 'Inscripciones UPTC');
         this.resetForm(form);
+        console.log("se creo");
       },
       (err: any) => {
          //this.toastr.error(err);

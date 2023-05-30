@@ -1,7 +1,7 @@
 export class UserModel{
-  user:string = '';
-  pasword:string = '';
+  username:string = '';
+  password:string = '';
 
-  email:string = '';
+  emailUser:string = '';
 
 }
