@@ -10,6 +10,7 @@ import {DatosCompartidosService} from '../DatosCompartidosService';
 import {DatosCompartidosLogin} from '../DatosCompartidosLogin';
 import {IngredientModel} from "./ingredients.model";
 import {ToastrService} from "ngx-toastr";
+import {UserModel} from "../loging/user.model";
 
 
 @Component({
@@ -29,10 +30,39 @@ export class CrearRecetaComponent implements OnInit {
   formValues: any[] = [];
   arrayI: any = new IngredientModel();
   arrayO: any = new RecetaModel();
+  public array: RecetaModel[];
+  userList: UserModel[] | undefined = [];
 
   constructor(public service: AppService, public toastr: ToastrService, public sanitizer: DomSanitizer, public RecetasService: RecipeService, private datosCompartidosService: DatosCompartidosService, private datosCompartidos: DatosCompartidosLogin) {
+    this.array = []
+    this.getUserData();
     this.ngOnInit();
   }
+
+  findUserIdByEmail(userModel: UserModel[] | undefined): number {
+    const emailUser = this.datosCompartidos.obtenerDato(); // Obtén el email del modelo
+    if (userModel !== undefined) {
+      const foundUser = userModel.find(user => user.emailUser === emailUser); // Busca el usuario por su email
+      if (foundUser) {
+        this.service.formDataReceta.userId = foundUser.idUser;
+      } else {
+        return 0; // Si no se encuentra el usuario, devuelve un valor predeterminado (0 en este caso)
+      }
+    }
+    return 0;
+  }
+
+
+  async getUserData(): Promise<UserModel[] | undefined> {
+    const users = await this.service.getUser().toPromise();
+    this.userList = users;
+    console.log("USUARIOS: ", users);
+    this.findUserIdByEmail(users);
+    return this.userList;
+  }
+
+
+
 
   ngOnInit(): void {
     this.ingredientList$ = this.RecetasService.getInspectionList();
@@ -103,7 +133,7 @@ export class CrearRecetaComponent implements OnInit {
 
 
   addRecipe(form: NgForm) {
-    this.service.formDataReceta.userId = 1;
+
     if (this.imageUrl != null && this.imageFile != null) {
       this.service.uploadImg(this.imageFile).subscribe((res: any): void => {
           this.service.formDataReceta.recipePhoto = res;
