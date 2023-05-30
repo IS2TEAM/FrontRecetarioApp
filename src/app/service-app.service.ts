@@ -37,6 +37,8 @@ export class AppService {
     return this.http.put(`${this.APIUrl}/Recipes/${this.formDataReceta.idRecipe}`, this.formDataReceta);
   }
 
+
+
 /*  getLoging() {
     const key = `${this.formDataUser.email}`;
     const value = `${this.formDataUser.pasword}`;
@@ -44,9 +46,9 @@ export class AppService {
   }*/
 
   getLoging() {
-    const key = `${this.formDataUser.email}`;
-    const value = `${this.formDataUser.pasword}`;
-    return this.http.get(`${this.APIUrl}/Users/Login/${key},${value}`).pipe(
+    const key = `${this.formDataUser.emailUser}`;
+    const value = `${this.formDataUser.password}`;
+    return this.http.get(`${this.APIUrl}/Users/${key},${value}`).pipe(
       tap((response: any) => {
         // Realizar acciones adicionales aquí si es necesario
         console.log(response); // Puedes imprimir la respuesta para verificarla en la consola
@@ -60,7 +62,7 @@ export class AppService {
   }
 
   putUser() {
-    return this.http.put(`${this.APIUrl}/user/${this.formDataUser.user}`, this.formDataUser);
+    return this.http.put(`${this.APIUrl}/user/${this.formDataUser.username}`, this.formDataUser);
   }
 
   deleteIngredient(){
@@ -77,7 +79,12 @@ export class AppService {
   }
 
   postUser() {
-    return this.http.post(this.APIUrl + '/recipes/url', this.formDataUser);
+    const data = {
+      username: this.formDataUser.username,
+      emailUser: this.formDataUser.emailUser,
+      password: this.formDataUser.password
+    };
+    return this.http.post(this.APIUrl + '/Users',data);
   }
 
   uploadImg(imageFile: File) {
