@@ -26,7 +26,7 @@ export class AppService {
   formDataPurchasedIngredientes: PurchasedIngredientsModel = new PurchasedIngredientsModel();
   formDataShopingList: ShoppingListModel = new ShoppingListModel();
 
-  postRecipesIngredient(data:any){
+  postRecipesIngredient(data:any[]){
     return this.http.post(this.APIUrl+'/Recipesingredients', data);
   }
 
@@ -35,8 +35,10 @@ export class AppService {
     return this.http.get<any>(this.APIUrl + '/Recipes');
   }
 
-  getlast(): Observable<IngredientRecipe[]> {
-    return this.http.get<IngredientRecipe[]>(this.APIUrl + '/Recipes/GetLastRecipe');
+  getlast(): Promise<RecetaModel> {
+    return this.http.get<any>(this.APIUrl + '/Recipes/GetLastRecipe')
+      .toPromise()
+      .then(response => response as RecetaModel);
   }
 
   getRecipeUserById(recipeId: number): Observable<any[]> {
