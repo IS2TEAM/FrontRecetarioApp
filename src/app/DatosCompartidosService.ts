@@ -26,6 +26,9 @@ export class DatosCompartidosService {
     }
   }
 
+  limpiarDatos() {
+    this.dato = [];
+  }
   editar(id: number, objetoEditado: IngredientModel) {
     const index = this.dato.findIndex((dato) => dato.idIngredient === id);
     if (index !== -1) {

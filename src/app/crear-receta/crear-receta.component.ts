@@ -80,22 +80,30 @@ export class CrearRecetaComponent implements OnInit{
     //this.service.formDataIngredientRecipe.idIngredient = this.service.formDataIngredient.idIngredient;
     //this.service.formDataIngredientRecipe.quantity = this.service.formDataIngredient.quantity;
     //this.service.formDataIngredientRecipe.idRecipeIngredient = 0;
-    console.log(this.service.formDataIngredient.nameIngredient);
+    //console.log(this.service.formDataIngredient.nameIngredient);
     this.arrayI = this.service.formDataIngredient;
 
     this.datosCompartidosService.guardarDato(this.arrayI);
-    //console.log("si espicha "+this.service.formDataIngredient.idIngredient);
-    //this.service.postRecipesIngredient(this.arrayI).subscribe(
-      //(res: any) => {
 
-
-      //},
-      //(err: any) => {
-        // this.toastr.error(err.toString());
-      //}
-    //);
   }
 
+
+  convertArray(ingredients: IngredientModel[], idRecipe: number): IngredientRecipe[] {
+    const convertedArray: IngredientRecipe[] = [];
+
+    for (const ingredient of ingredients) {
+      const convertedIngredient: IngredientRecipe = {
+        idRecipeIngredient: 0,
+        idIngredient: ingredient.idIngredient,
+        idRecipe: idRecipe,
+        quantity: ingredient.quantity,
+      };
+
+      convertedArray.push(convertedIngredient);
+    }
+
+    return convertedArray;
+  }
 
 
   addRecipe(form: NgForm) {
@@ -103,7 +111,7 @@ export class CrearRecetaComponent implements OnInit{
       //const u = this.imageUrl;
       this.service.formDataReceta.recipePhoto = this.imageUrl;
       this.service.formDataReceta.userId = 1;
-      console.log(this.service.formDataReceta);
+      //console.log(this.service.formDataReceta);
       /*this.service.uploadImg(this.imageFile).subscribe(
         (res: any) => { // actualización del tipo de dato de la respuesta
           //this.toastr.success('Imagen subida con exito', 'Inscripciones UPTC');
@@ -119,7 +127,11 @@ export class CrearRecetaComponent implements OnInit{
             (err: any) => {
              // this.toastr.error(err.toString());
             }
-          );
+          )
+
+      //this.service.postRecipesIngredient(this.convertArray(this.datosCompartidosService.obtenerDato()),  //falta idRecipe);
+          this.datosCompartidosService.limpiarDatos();
+
         //},
         //(err: any) => {
           //this.toastr.error(err.toString());
@@ -135,6 +147,8 @@ export class CrearRecetaComponent implements OnInit{
           //this.toastr.error(err);
         }
       );
+      //this.service.postRecipesIngredient(this.convertArray(this.datosCompartidosService.obtenerDato()),  //falta idRecipe);
+      this.datosCompartidosService.limpiarDatos();
     }
   }
   resetForm(form: NgForm) {
@@ -143,10 +157,6 @@ export class CrearRecetaComponent implements OnInit{
     this.imageUrl = null;
   }
 
-  resetForm2(form: NgForm) {
-    form.form.reset();
-    this.service.formDataIngredientRecipe = new IngredientRecipe();
-    this.imageUrl = null;
-  }
+
 
 }
