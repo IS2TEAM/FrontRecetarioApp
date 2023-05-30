@@ -74,6 +74,7 @@ export class CrearRecetaComponent implements OnInit{
     this.imageUrl = null;
   }
   arrayI:any = new IngredientModel();
+  arrayO:any = new IngredientRecipe();
   addIngredient() {
 
     //this.service.formDataIngredientRecipe.idRecipe = 3;
@@ -81,8 +82,9 @@ export class CrearRecetaComponent implements OnInit{
     //this.service.formDataIngredientRecipe.quantity = this.service.formDataIngredient.quantity;
     //this.service.formDataIngredientRecipe.idRecipeIngredient = 0;
     //console.log(this.service.formDataIngredient.nameIngredient);
+    this.service.formDataIngredient.idIngredient = this.findIngredientIdByName(this.service.formDataIngredient.nameIngredient);
     this.arrayI = this.service.formDataIngredient;
-
+    console.log(this.arrayI);
     this.datosCompartidosService.guardarDato(this.arrayI);
 
   }
@@ -104,6 +106,12 @@ export class CrearRecetaComponent implements OnInit{
 
     return convertedArray;
   }
+
+  findIngredientIdByName(name: string): number {
+    const ingredient = this.ingredientList.find(item => item.nameIngredient === name);
+    return ingredient?.idIngredient;
+  }
+
 
 
   addRecipe(form: NgForm) {
@@ -128,8 +136,13 @@ export class CrearRecetaComponent implements OnInit{
              // this.toastr.error(err.toString());
             }
           )
+      this.arrayO = this.service.getlast();
+      console.log(this.arrayO.idRecipe);
+      console.log(this.datosCompartidosService.obtenerDato());
+      //this.arrayI = this.service.getlast();
+      console.log(this.convertArray(this.datosCompartidosService.obtenerDato(), this.arrayO.idRecipe ));
 
-      //this.service.postRecipesIngredient(this.convertArray(this.datosCompartidosService.obtenerDato()),  //falta idRecipe);
+          this.service.postRecipesIngredient(this.convertArray(this.datosCompartidosService.obtenerDato(), this.arrayI.idRecipe ));
           this.datosCompartidosService.limpiarDatos();
 
         //},
@@ -147,7 +160,10 @@ export class CrearRecetaComponent implements OnInit{
           //this.toastr.error(err);
         }
       );
-      //this.service.postRecipesIngredient(this.convertArray(this.datosCompartidosService.obtenerDato()),  //falta idRecipe);
+
+      console.log(this.convertArray(this.datosCompartidosService.obtenerDato(), this.arrayO.idRecipe ));
+      this.arrayI = this.service.getlast();
+      this.service.postRecipesIngredient(this.convertArray(this.datosCompartidosService.obtenerDato(), this.arrayO.idRecipe));
       this.datosCompartidosService.limpiarDatos();
     }
   }

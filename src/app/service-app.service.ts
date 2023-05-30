@@ -30,8 +30,13 @@ export class AppService {
     return this.http.post(this.APIUrl+'/Recipesingredients', data);
   }
 
-  getInspectionList(): Observable<any[]> {
+
+    getInspectionList(): Observable<any[]> {
     return this.http.get<any>(this.APIUrl + '/Recipes');
+  }
+
+  getlast(): Observable<IngredientRecipe[]> {
+    return this.http.get<IngredientRecipe[]>(this.APIUrl + '/Recipes/GetLastRecipe');
   }
 
   getRecipeUserById(recipeId: number): Observable<any[]> {
