@@ -1,8 +1,9 @@
-<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+<meta content="upgrade-insecure-requests" http-equiv="Content-Security-Policy">
 <div class="card form-group  p-5" style="margin-left: 0%">
-  <div id="title" class="card bg-outline-primary col-15 p-10 text-align: center">
-    <img src="https://www.interleo.com/wp-content/uploads/2020/06/International-Food-Ingredients-header.png"
-         [ngStyle]="{'max-width': imgWidth}" style="width: 1000px;">
+  <div class="card bg-outline-primary col-15 p-10 text-align: center" id="title">
+    <img [ngStyle]="{'max-width': imgWidth}"
+         src="https://www.interleo.com/wp-content/uploads/2020/06/International-Food-Ingredients-header.png"
+         style="width: 1000px;">
     <div class="card-header ">
       <p class="parrafo-responsivo">Ingredientes agregados</p>
     </div>
@@ -38,14 +39,15 @@
             <td>{{item.nameIngredient}}</td>
             <td>{{item.quantity}}</td>
             <td>
-              <button (click)="populateForm(item)" [routerLink]="['/edit-myingredient/', item.idIngredient]" type="submit"
-                      class="btn btn-primary" style="vertical-align: middle;">Editar
+              <button (click)="populateForm(item)" [routerLink]="['/edit-myingredient/', item.idIngredient]"
+                      class="btn btn-primary"
+                      style="vertical-align: middle;" type="submit">Editar
               </button>
             </td>
             <td>
-              <!--          aqui se debe llamar la accion para que cuando pulse el boton se borre la receta-->
-              <button type="submit"
-                      class="btn btn-danger" style="vertical-align: middle;">Borrar
+              <button (click)="borrarIngrediente(item.idIngredient)" class="btn btn-danger"
+                      style="vertical-align: middle;"
+                      type="submit">Borrar
               </button>
             </td>
 
@@ -54,15 +56,18 @@
             </td>
           </tr>
           <h5> total registros {{inspectionList.length}}</h5>
-          <p df [hidden]="selectedState == 0">
+          <p [hidden]="selectedState == 0" df>
           </tbody>
         </table>
-        <pagination-controls (pageChange)="page = $event" previousLabel="Anterior"
-                             nextLabel="Siguiente"></pagination-controls>
+        <button (click)="back()" class="btn btn-primary" style="vertical-align: middle;"
+                type="submit">Volver
+        </button>
+        <pagination-controls (pageChange)="page = $event" nextLabel="Siguiente"
+                             previousLabel="Anterior"></pagination-controls>
       </div>
     </div>
   </div>
 
-  <script src="https://kit.fontawesome.com/3ec369e78b.js" crossorigin="anonymous"></script>
+  <script crossorigin="anonymous" src="https://kit.fontawesome.com/3ec369e78b.js"></script>
   </body>
 </div>

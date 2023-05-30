@@ -11,12 +11,12 @@
   <div class="row">
     <div class="col-md-4" *ngFor="let item of array">
       <div class="card mb-4">
-        <img class="card-img-top" [src]="item.recipePhoto" [ngStyle]="{'max-width': imgWidth}" style="width: 500px;">
+        <img class="card-img-top" [src]="sanitizer.bypassSecurityTrustUrl(item.recipePhoto)" [ngStyle]="{'max-width': imgWidth}" style="width: 500px;">
         <div class="card-body">
           <!--          <h5 class="card-title" *ngIf="item.instructions==='papas'">{{item.instructions}}</h5>-->
 
           <h3 class="card-title" >{{item.recipesName}}</h3>
-          <a class= "a"(click)="populateForm(item)" [routerLink]="['/details-recipe/', item.idRecipe]">Detalles</a>
+          <a class= "a"(click)="populateForm(item)" [routerLink]="['../details-recipe/', item.idRecipe]">Detalles</a>
           <div>
           <button (click)="populateForm(item)" [routerLink]="['/edit-myrecipes/', item.idRecipe]" type="submit"
                   class="btn btn-primary" style="vertical-align: middle;">Editar
@@ -24,9 +24,8 @@
           </div>
           <div>
 <!--          aqui se debe llamar la accion para que cuando pulse el boton se borre la receta-->
-          <button   type="submit"
-                  class="btn btn-danger" style="vertical-align: middle;">Borrar
-          </button>
+
+            <button type="submit" class="btn btn-danger" style="vertical-align: middle;" (click)="borrarReceta(item.idRecipe)">Borrar</button>
           </div>
         </div>
       </div>

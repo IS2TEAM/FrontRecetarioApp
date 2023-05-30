@@ -19,13 +19,19 @@ export class DatosCompartidosService {
     return this.dato;
   }
 
-  editar(id: number, objetoEditado: IngredientModel) {
-    console.log(objetoEditado);
-
+  borrarIngrediente(id: number) {
     const index = this.dato.findIndex((dato) => dato.idIngredient === id);
-    console.log(index);
     if (index !== -1) {
-      console.log("entro");
+      this.dato.splice(index, 1);
+    }
+  }
+
+  limpiarDatos() {
+    this.dato = [];
+  }
+  editar(id: number, objetoEditado: IngredientModel) {
+    const index = this.dato.findIndex((dato) => dato.idIngredient === id);
+    if (index !== -1) {
       this.dato[index] = Object.assign({}, objetoEditado);
     }
   }

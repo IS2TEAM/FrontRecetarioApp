@@ -14,7 +14,11 @@
         <div class="form-group">
           <div class="form-group ">
             <label  class="parrafo-responsivo2"for="nombreReceta">Nombre de la receta</label>
-            <input type="text" class="form-control" id="nombreReceta" name="nombreReceta" required>
+
+            <input class="form-control" id="nombreReceta" placeholder="Nombre de la receta"
+                   name="nombreReceta" #nombreReceta="ngModel" [(ngModel)]="service.formDataReceta.recipesName"
+                   [class.invalid]="nombreReceta.invalid && nombreReceta.touched"
+                   type="text" required data-error="Por favor, ingrese el nombre de la receta">
           </div>
         </div>
 
@@ -24,18 +28,21 @@
             <button class= "btn btn-primary" routerLink="/view-ingredients" >Ingredientes agregados</button>
 
             <div class="form-group ">
-              <label class="parrafo-responsivo2" for="nombreIngrediente">Nombre del Ingrediente:</label>
-              <select class="form-select" id="nombreIngrediente" name="nombreIngrediente" required>
+              <label class="parrafo-responsivo2" for="nombreIngrediente">Nombre del Ingrediente: </label>
+              <select class="form-select" id="nombreIngrediente" name="nombreIngrediente" required [(ngModel)]="service.formDataIngredient.nameIngredient">
                 <option class="parrafo-responsivo2" value="" disabled selected>Seleccione un ingrediente</option>
                 <option *ngFor="let item of inspectionList" [value]="item.ingredientName">{{ item.ingredientName }}</option>
               </select>
             </div>
             <div class="form-group">
               <label class="parrafo-responsivo2" for="cantidadIngrediente">Cantidad:</label>
-              <input type="text" class="form-control" id="cantidadIngrediente" name="cantidadIngrediente" required>
+              <input class="form-control" id="cantidadIngrediente" placeholder="Cantidad de Ingrediente"
+                     name="cantidadIngrediente" #cantidadIngrediente="ngModel" [(ngModel)]="service.formDataIngredient.quantity"
+                     [class.invalid]="cantidadIngrediente.invalid && cantidadIngrediente.touched"
+                     type="text" required data-error="Por favor, ingrese la cantidad de ingredientes">
             </div>
             <div class="">
-              <button type="submit" class="btn btn-success">Agregar</button>
+              <button class="button.small-screen btn btn-success" type="button" (click)="addIngredient()">Agregar</button>
             </div>
           </div>
         </div>
@@ -43,21 +50,31 @@
         <div class="form-group">
           <div class="form-group ">
             <label class="parrafo-responsivo2" for="tiempoPreparacion">Tiempo de preparación</label>
-            <input type="text" class="form-control" id="tiempoPreparacion" name="tiempoPreparacion" required>
+            <input class="form-control" id="tiempoPreparacion" placeholder="Tiempo de preparación"
+                   name="tiempoPreparacion" #tiempoPreparacion="ngModel" [(ngModel)]="service.formDataReceta.timePreparation"
+                   [class.invalid]="tiempoPreparacion.invalid && tiempoPreparacion.touched"
+                   type="number" required data-error="Por favor, ingrese el tiempo de preparación">
           </div>
         </div>
 
         <div class="form-group">
           <div class="form-group ">
             <label class="parrafo-responsivo2" for="instrucciones">Instrucciones de cocción</label>
-            <textarea class="form-control" id="instrucciones" name="instrucciones" required></textarea>
+
+            <input class="form-control" id="instrucciones" placeholder="Instrucciones de la receta"
+                   name="instrucciones" #instrucciones="ngModel" [(ngModel)]="service.formDataReceta.instructions"
+                   [class.invalid]="instrucciones.invalid && instrucciones.touched"
+                   type="text" required data-error="Por favor, ingrese las instrucciones de preparacion">
           </div>
         </div>
 
         <div class="form-group">
           <div class="form-group ">
             <label class="parrafo-responsivo2" for="porciones">Número de porciones</label>
-            <input type="number" class="form-control" id="porciones" name="porciones" required>
+            <input class="form-control" id="porciones" placeholder="Numero de porciones"
+                   name="porciones" #porciones="ngModel" [(ngModel)]="service.formDataReceta.portions"
+                   [class.invalid]="porciones.invalid && porciones.touched"
+                   type="number" required data-error="Por favor, ingrese un numero de porciones">
           </div>
         </div>
 

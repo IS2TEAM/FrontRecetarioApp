@@ -10,7 +10,7 @@
 
 <div class="container ">
 
-  <form novalidate autocomplete="off" #form="ngForm"  (submit)="addRecipe(form)">
+  <form novalidate autocomplete="off" #form="ngForm">
     <div class="form-group">
       <div class="form-group">
         <label class= "parrafo-responsivo2" for="nombreReceta">Nombre de la receta</label>
@@ -26,7 +26,7 @@
     <div class="card form-group  p-3">
       <div class="card-body">
         <h3 class= "parrafo-responsivo2">Ingredientes</h3>
-        <button class= "btn btn-primary button.small-screen"routerLink="/view-ingredients" >Ingredientes agregados</button>
+        <button class= "btn btn-primary button.small-screen" routerLink="../view-ingredients" >Ingredientes agregados</button>
 
 
 
@@ -113,8 +113,7 @@
         </div>
       </div>
     </div>
-
-    <button type="submit" class="btn btn-primary">Guardar receta</button>
+    <button (click)="addRecipe(form)" class="btn btn-primary">Guardar receta</button>
   </form>
 </div>
 </div>

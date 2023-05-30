@@ -141,6 +141,11 @@ export class ViewIngredientsComponent {
 
   }
 
+  borrarIngrediente(id:number) {
+    this.datosCompartidosService.borrarIngrediente(id);
+  }
+
+
 
   public ingredientes: IngredientModel[] = [];
 
@@ -160,8 +165,7 @@ export class ViewIngredientsComponent {
   }
 
 
-
-
-
-
+  back() {
+    window.history.back();
+  }
 }
