@@ -7,7 +7,7 @@ import {UserModel} from "./loging/user.model";
 import {PurchasedIngredientsModel} from "./shopping-list/purchasedIngredients.model";
 import {ShoppingListModel} from "./shopping-list/shopping-list.model";
 import { tap, map } from 'rxjs/operators';
-import {IngredientRecipe} from "./crear-receta/IngredientRecipe";
+import {IngredientRecipeModel} from "./crear-receta/IngredientRecipe.model";
 
 
 @Injectable({
@@ -22,12 +22,12 @@ export class AppService {
   formDataReceta: RecetaModel = new RecetaModel();
   formDataIngredient : IngredientModel = new IngredientModel();
   formDataUser: UserModel = new UserModel();
-  formDataIngredientRecipe: IngredientRecipe = new IngredientRecipe();
+  formDataIngredientRecipe: IngredientRecipeModel = new IngredientRecipeModel();
 
   formDataPurchasedIngredientes: PurchasedIngredientsModel = new PurchasedIngredientsModel();
   formDataShopingList: ShoppingListModel = new ShoppingListModel();
 
-  postRecipesIngredient(data:any[]){
+  postRecipesIngredient(data:any):any{
     return this.http.post(this.APIUrl+'/Recipesingredients', data);
   }
 
@@ -134,6 +134,7 @@ export class AppService {
 
 
   postRecipes() {
+    console.log("RECETA A POSTEAR",this.formDataReceta);
     return this.http.post(this.APIUrl + '/Recipes', this.formDataReceta);
   }
 
@@ -143,6 +144,7 @@ export class AppService {
     const formData = new FormData();
     const newFileName = this.formDataReceta.recipesName + this.formDataReceta.idRecipe + ".jpg";
     formData.append('file', imageFile, newFileName);
+    console.log("IMAGEN: ",formData);
     return this.http.post<string>(this.APIUrl+'/Recipes/uploadImage', formData);
   }
 
@@ -168,6 +170,11 @@ export class AppService {
 
   getUserById(ingredientId: number): Observable<UserModel> {
     return this.http.get<UserModel>(`${this.APIUrl}/recipe/${ingredientId}`);
+  }
+
+
+  getUser(): Observable<UserModel[]> {
+    return this.http.get<UserModel[]>(this.APIUrl + '/Users');
   }
 
 

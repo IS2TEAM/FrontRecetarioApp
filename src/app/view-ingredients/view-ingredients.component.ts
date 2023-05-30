@@ -165,8 +165,7 @@ export class ViewIngredientsComponent {
   }
 
 
-
-
-
-
+  back() {
+    window.history.back();
+  }
 }

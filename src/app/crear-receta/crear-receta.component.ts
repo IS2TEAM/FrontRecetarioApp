@@ -5,10 +5,11 @@ import {NgForm} from "@angular/forms";
 import {RecetaModel} from "./receta.model";
 import {DomSanitizer} from '@angular/platform-browser';
 import {RecipeService} from "../view-ingredients/RecipeService.service";
-import {IngredientRecipe} from "./IngredientRecipe";
-import { DatosCompartidosService } from '../DatosCompartidosService';
+import {IngredientRecipeModel} from "./IngredientRecipe.model";
+import {DatosCompartidosService} from '../DatosCompartidosService';
+import {DatosCompartidosLogin} from '../DatosCompartidosLogin';
 import {IngredientModel} from "./ingredients.model";
-
+import {ToastrService} from "ngx-toastr";
 
 
 @Component({
@@ -16,21 +17,23 @@ import {IngredientModel} from "./ingredients.model";
   templateUrl: './crear-receta.component.html',
   styleUrls: ['./crear-receta.component.css']
 })
-export class CrearRecetaComponent implements OnInit{
-
-  constructor(public service: AppService,  public sanitizer: DomSanitizer, public RecetasService: RecipeService, private datosCompartidosService: DatosCompartidosService) {
-    this.ngOnInit();
-
-
-  }
+export class CrearRecetaComponent implements OnInit {
 
   imgWidth = '100%';
   imageUrl: string | null = null;
   imageFile: File | null = null;
-  inspectionList$!:Observable<any[]>;
-  ingredientList$!:Observable<any[]>;
-  inspectionList: any[]=[];
-  ingredientList: any[]=[];
+  inspectionList$!: Observable<any[]>;
+  ingredientList$!: Observable<any[]>;
+  inspectionList: any[] = [];
+  ingredientList: any[] = [];
+  formValues: any[] = [];
+  arrayI: any = new IngredientModel();
+  arrayO: any = new RecetaModel();
+
+  constructor(public service: AppService, public toastr: ToastrService, public sanitizer: DomSanitizer, public RecetasService: RecipeService, private datosCompartidosService: DatosCompartidosService, private datosCompartidos: DatosCompartidosLogin) {
+    this.ngOnInit();
+  }
+
   ngOnInit(): void {
     this.ingredientList$ = this.RecetasService.getInspectionList();
     this.ingredientList$.subscribe((ingredientList) => {
@@ -38,10 +41,6 @@ export class CrearRecetaComponent implements OnInit{
     });
 
   }
-
-
-  formValues: any[] = [];
-
 
   handleDragOver(event: DragEvent) {
     event.preventDefault();
@@ -73,29 +72,19 @@ export class CrearRecetaComponent implements OnInit{
   clearPreview() {
     this.imageUrl = null;
   }
-  arrayI:any = new IngredientModel();
-  arrayO:any = new RecetaModel();
-  addIngredient() {
 
-    //this.service.formDataIngredientRecipe.idRecipe = 3;
-    //this.service.formDataIngredientRecipe.idIngredient = this.service.formDataIngredient.idIngredient;
-    //this.service.formDataIngredientRecipe.quantity = this.service.formDataIngredient.quantity;
-    //this.service.formDataIngredientRecipe.idRecipeIngredient = 0;
-    //console.log(this.service.formDataIngredient.nameIngredient);
+  addIngredient() {
     this.service.formDataIngredient.idIngredient = this.findIngredientIdByName(this.service.formDataIngredient.nameIngredient);
     this.arrayI = this.service.formDataIngredient;
-    console.log(this.arrayI);
     this.datosCompartidosService.guardarDato(this.arrayI);
-
+    this.toastr.success("INGREDIENTE GUARDADO CON EXITO", "EXITOSO!");
   }
 
 
-  convertArray(ingredients: IngredientModel[], idRecipes: number): IngredientRecipe[] {
-    const convertedArray: IngredientRecipe[] = [];
-
+  convertArray(ingredients: IngredientModel[], idRecipes: number): IngredientRecipeModel[] {
+    const convertedArray: IngredientRecipeModel[] = [];
     for (const ingredient of ingredients) {
-      const convertedIngredient: IngredientRecipe = {
-        idRecipeIngredient: 0,
+      const convertedIngredient: IngredientRecipeModel = {
         idIngredient: ingredient.idIngredient,
         idRecipe: idRecipes,
         quantity: ingredient.quantity,
@@ -104,7 +93,6 @@ export class CrearRecetaComponent implements OnInit{
       console.log(idRecipes);
       convertedArray.push(convertedIngredient);
     }
-
     return convertedArray;
   }
 
@@ -115,40 +103,21 @@ export class CrearRecetaComponent implements OnInit{
 
 
   addRecipe(form: NgForm) {
+    this.service.formDataReceta.userId = 1;
     if (this.imageUrl != null && this.imageFile != null) {
-      this.service.formDataReceta.recipePhoto = this.imageUrl;
-      this.service.formDataReceta.userId = 1;
-
-      this.service.postRecipes().subscribe(
-        (res: any) => {
-          this.resetForm(form);
+      this.service.uploadImg(this.imageFile).subscribe((res: any): void => {
+          this.service.formDataReceta.recipePhoto = res;
+          this.toastr.success("IMAGEN CREADA CON EXITO", "EXITOSO!");
+          this.postRecipe(form);
         },
         (err: any) => {
-          // this.toastr.error(err.toString());
-        }
-      );
-
-      this.service.getlast().then((res: RecetaModel) => {
-        const arrayO = res;
-
-        console.log(this.convertArray(this.datosCompartidosService.obtenerDato(), arrayO.idRecipe));
-
-        this.service.postRecipesIngredient(this.convertArray(this.datosCompartidosService.obtenerDato(), arrayO.idRecipe));
-        this.datosCompartidosService.limpiarDatos();
-      });
+          this.toastr.error("OCURRIO UN ERROR AL CREAR LA RECETA", "ERROR!");
+        });
     } else {
-      this.service.postRecipes().subscribe(
-        (res: any) => {
-          this.resetForm(form);
-        },
-        (err: any) => {
-          //this.toastr.error(err);
-        }
-      );
+      this.service.formDataReceta.recipePhoto = "";
+      this.postRecipe(form);
     }
   }
-
-
 
   resetForm(form: NgForm) {
     form.form.reset();
@@ -156,6 +125,27 @@ export class CrearRecetaComponent implements OnInit{
     this.imageUrl = null;
   }
 
+  private postRecipe(form: NgForm) {
+    this.service.postRecipes().subscribe(
+      (res: any) => {
+        this.toastr.success("RECETA CREADA CON EXITO", "EXITOSO!");
+        this.resetForm(form);
+      },
+      (err: any) => {
+        this.toastr.error("OCURRIO UN ERROR AL CREAR LA RECETA", "ERROR!");
+      }
+    );
+    this.service.getlast().then((res: RecetaModel) => {
+      const arrayO = res;
+      const data : IngredientRecipeModel[] = this.convertArray(this.datosCompartidosService.obtenerDato(), arrayO.idRecipe);
+      for (let i = 0; i < data.length; i++) {
+        this.service.postRecipesIngredient(data[i]).subscribe((res:any)=>{
+          console.log(res);
+        });
+      }
+      this.datosCompartidosService.limpiarDatos();
+    });
+  }
 
 
 }

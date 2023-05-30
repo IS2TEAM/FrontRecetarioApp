@@ -4,9 +4,9 @@ import {IngredientModel} from "./crear-receta/ingredients.model";
 @Injectable({
   providedIn: 'root',
 })
-export class DatosCompartidosService {
+export class DatosCompartidosLogin {
 
-  private idUser: string = '';
+  private idUser: string = "";
 
   constructor() {
   }
@@ -16,12 +16,13 @@ export class DatosCompartidosService {
   }
 
   obtenerDato(): string {
+    console.log(this.idUser);
     return this.idUser;
   }
 
 
   limpiarDatos() {
-    this.idUser = '';
+    this.idUser = "";
   }
 
 
