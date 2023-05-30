@@ -33,9 +33,9 @@
 
         <div class="form-group parrafo-responsivo2">
           <label class= "parrafo-responsivo2" for="nombreIngrediente">Nombre del Ingrediente:</label>
-          <select class="form-select" id="nombreIngrediente" name="nombreIngrediente" required [(ngModel)]="service.formDataIngredient.idIngredient">
+          <select class="form-select" id="nombreIngrediente" name="nombreIngrediente" required [(ngModel)]="service.formDataIngredient.nameIngredient">
             <option value="" disabled selected>Seleccione un ingrediente</option>
-            <option *ngFor="let item of ingredientList" [value]="item.idIngredient">{{ item.nameIngredient }}</option>
+            <option *ngFor="let item of ingredientList" [value]="item.nameIngredient">{{ item.nameIngredient }}</option>
 
           </select>
         </div>

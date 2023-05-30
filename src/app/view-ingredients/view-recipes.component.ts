@@ -4,6 +4,7 @@ import {AppService} from "../service-app.service";
 import {RecipeService} from "./RecipeService.service";
 import {IngredientModel} from "../crear-receta/ingredients.model";
 import {Observable, of} from "rxjs";
+import { DatosCompartidosService } from '../DatosCompartidosService';
 @Component({
   selector: 'app-view-ingredients',
   templateUrl: './view-recipes.component.html',
@@ -135,7 +136,7 @@ export class ViewRecipesComponent {
     return (this.tamanio / this.pageSize);
   }
 
-  constructor(private RecetasService: RecipeService, public service: AppService) {
+  constructor(private RecetasService: RecipeService, public service: AppService,private datosCompartidosService: DatosCompartidosService) {
     this.ngOnInit();
 
   }
@@ -144,10 +145,12 @@ export class ViewRecipesComponent {
   public ingredientes: IngredientModel[] = [];
 
   ngOnInit(): void {
-    this.inspectionList$ = this.RecetasService.getInspectionList();
-    this.inspectionList$.subscribe((inspectionList) => {
-      this.inspectionList = inspectionList;
-    });
+    //this.inspectionList$ = this.datosCompartidosService.obtenerDato();
+    console.log(this.datosCompartidosService.obtenerDato())
+    this.inspectionList = this.datosCompartidosService.obtenerDato();
+    //this.inspectionList$.subscribe((inspectionList) => {
+    //  this.inspectionList = inspectionList;
+    //});
   }
   getInspectionList() {
     this.inspectionList$ = this.service.getInspectionList();

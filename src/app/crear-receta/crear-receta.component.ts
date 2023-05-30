@@ -6,6 +6,9 @@ import {RecetaModel} from "./receta.model";
 import {DomSanitizer} from '@angular/platform-browser';
 import {RecipeService} from "../view-ingredients/RecipeService.service";
 import {IngredientRecipe} from "./IngredientRecipe";
+import { DatosCompartidosService } from '../DatosCompartidosService';
+import {IngredientModel} from "./ingredients.model";
+
 
 
 @Component({
@@ -15,7 +18,7 @@ import {IngredientRecipe} from "./IngredientRecipe";
 })
 export class CrearRecetaComponent implements OnInit{
 
-  constructor(public service: AppService,  public sanitizer: DomSanitizer, public RecetasService: RecipeService) {
+  constructor(public service: AppService,  public sanitizer: DomSanitizer, public RecetasService: RecipeService, private datosCompartidosService: DatosCompartidosService) {
     this.ngOnInit();
 
 
@@ -70,23 +73,27 @@ export class CrearRecetaComponent implements OnInit{
   clearPreview() {
     this.imageUrl = null;
   }
-  arrayI:any = new IngredientRecipe();
+  arrayI:any = new IngredientModel();
   addIngredient() {
-    this.service.formDataIngredientRecipe.idRecipe = 3;
-    this.service.formDataIngredientRecipe.idIngredient = this.service.formDataIngredient.idIngredient;
-    this.service.formDataIngredientRecipe.quantity = this.service.formDataIngredient.quantity;
-    this.service.formDataIngredientRecipe.idRecipeIngredient = 0;
-    this.arrayI = this.service.formDataIngredientRecipe;
+
+    //this.service.formDataIngredientRecipe.idRecipe = 3;
+    //this.service.formDataIngredientRecipe.idIngredient = this.service.formDataIngredient.idIngredient;
+    //this.service.formDataIngredientRecipe.quantity = this.service.formDataIngredient.quantity;
+    //this.service.formDataIngredientRecipe.idRecipeIngredient = 0;
+    console.log(this.service.formDataIngredient.nameIngredient);
+    this.arrayI = this.service.formDataIngredient;
+
+    this.datosCompartidosService.guardarDato(this.arrayI);
     //console.log("si espicha "+this.service.formDataIngredient.idIngredient);
-    this.service.postRecipesIngredient(this.arrayI).subscribe(
-      (res: any) => {
+    //this.service.postRecipesIngredient(this.arrayI).subscribe(
+      //(res: any) => {
 
 
-      },
-      (err: any) => {
+      //},
+      //(err: any) => {
         // this.toastr.error(err.toString());
-      }
-    );
+      //}
+    //);
   }
 
 
