@@ -11,6 +11,7 @@ import {ShoppingListComponent} from "./shopping-list/shopping-list.component";
 import {MyrecipesComponent} from "./myrecipes/myrecipes.component";
 import {EditRecipeComponent} from "./edit-recipe/edit-recipe.component";
 import {DetailsRecipeComponent} from "./details-recipe/details-recipe.component";
+import {EditIngredientComponent} from "./edit-ingredient/edit-ingredient.component";
 
 
 const routes: Routes = [
@@ -24,6 +25,7 @@ const routes: Routes = [
   {path: 'shoppingList', component: ShoppingListComponent},
   {path: 'myrecipes', component: MyrecipesComponent},
   {path: 'edit-myrecipes/:id', component: EditRecipeComponent},
+  {path: 'edit-myingredient/:id', component: EditIngredientComponent},
   {path: 'details-recipe/:id', component: DetailsRecipeComponent}
 
 ];

@@ -12,14 +12,18 @@
 
     <div class="form-group mt-3">
       <label for="nombreIngrediente">Nombre del Ingrediente:</label>
-      <select class="form-select" id="nombreIngrediente" name="nombreIngrediente" required>
+      <select class="form-select" id="nombreIngrediente" name="nombreIngrediente" required [(ngModel)]="service.formDataIngredient.nameIngredient">
         <option disabled selected>Seleccione un ingrediente</option>
-<!--        <option *ngFor="let item of inspectionList" [value]="item.ingredientName">{{ item.ingredientName }}</option>-->
+        <option *ngFor="let item of inspectionList" [value]="item.nameIngredient">{{ item.nameIngredient }}</option>
       </select>
     </div>
     <div class="form-group mt-3">
       <label for="cantidadIngrediente">Cantidad:</label>
-      <input type="text" class="form-control" id="cantidadIngrediente" name="cantidadIngrediente" required>
+
+      <input type="text" class="form-control" id="cantidadIngrediente" placeholder="Cantidad de Ingrediente"
+             name="cantidadIngrediente" #cantidadIngrediente="ngModel" [(ngModel)]="service.formDataIngredient.quantity"
+             [class.invalid]="cantidadIngrediente.invalid && cantidadIngrediente.touched"
+             type="number" required data-error="Por favor, ingrese la cantidad de ingrediente">
     </div>
     <div class="mt-3">
       <button type="submit" class="btn btn-success">Editar</button>

@@ -15,7 +15,7 @@ export class DatosCompartidosService {
     this.dato.push(nuevoDato);
   }
 
-  obtenerDato(): any[][] {
+  obtenerDato(): any[] {
     return this.dato;
   }
 

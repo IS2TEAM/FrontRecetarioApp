@@ -5,6 +5,7 @@ import {Observable} from "rxjs";
 import {IngredientModel} from "../crear-receta/ingredients.model";
 import  {ActivatedRoute} from "@angular/router";
 import {NgForm} from "@angular/forms";
+import {DatosCompartidosService} from "../DatosCompartidosService";
 
 @Component({
   selector: 'app-edit-ingredient',
@@ -14,15 +15,20 @@ import {NgForm} from "@angular/forms";
 export class EditIngredientComponent implements OnInit{
 public ingredientId: number;
 public ingredient: IngredientModel;
-  constructor(public service: AppService,  public sanitizer: DomSanitizer, private route: ActivatedRoute) {
+  constructor(public service: AppService,  public sanitizer: DomSanitizer, private route: ActivatedRoute,private datosCompartidosService: DatosCompartidosService) {
     this.ingredientId = 0;
     this.ingredient = new IngredientModel();
   }
 
+  populateForm(item: any) {
+    this.ingredientId = item;
+  }
+
+
   ngOnInit(): void {
     this.route.params.subscribe(params => {
       this.ingredientId = params['id'];
-      this.getIngredient(this.ingredientId);
+      this.getIngredient();
     });
   }
 
@@ -30,32 +36,28 @@ public ingredient: IngredientModel;
   imageUrl: string | null = null;
   imageFile: File | null = null;
   inspectionList$!:Observable<any[]>;
-  inspectionList: any[]=[];
+  inspectionList: IngredientModel[]=[];
 
 
-  getIngredient(id: number): void {
-    this.service.getIngredientById(id).subscribe(
-      (res: any) => {
-        this.ingredient = res;
-        console.log(res);
+  getIngredient(): void {
+    this.datosCompartidosService.obtenerDato();
+    this.inspectionList = this.datosCompartidosService.obtenerDato();
+    //this.service.getIngredientById(id).subscribe(
+      //(res: any) => {
+        //this.ingredient = res;
+        //console.log(res);
 
-      },
-      (err: any) => {
+      //},
+      //(err: any) => {
 
-        console.log(err);
-      }
-    );
+        //console.log(err);
+      //}
+    //);
   }
 
   editIngredient(form: NgForm) {
-    this.service.putIngredient().subscribe(
-      res => {
-        this.resetForm(form);
-      },
-      err => {
-        console.log(err);
-      }
-    );
+    //console.log(form.value);
+    //this.datosCompartidosService.editar(form);
   }
 
   resetForm(form: NgForm) {
