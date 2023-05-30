@@ -15,13 +15,16 @@ import {DatosCompartidosService} from "../DatosCompartidosService";
 export class EditIngredientComponent implements OnInit{
 public ingredientId: number;
 public ingredient: IngredientModel;
+public id: number;
   constructor(public service: AppService,  public sanitizer: DomSanitizer, private route: ActivatedRoute,private datosCompartidosService: DatosCompartidosService) {
     this.ingredientId = 0;
     this.ingredient = new IngredientModel();
+    this.id = 0;
   }
 
   populateForm(item: any) {
     this.ingredientId = item;
+    this.id = item;
   }
 
 
@@ -56,8 +59,15 @@ public ingredient: IngredientModel;
   }
 
   editIngredient(form: NgForm) {
-    //console.log(form.value);
-    //this.datosCompartidosService.editar(form);
+    this.service.formDataIngredient = new IngredientModel();
+    this.service.formDataIngredient.nameIngredient = form.value.nombreIngrediente;
+    this.service.formDataIngredient.quantity = form.value.cantidadIngrediente;
+    this.service.formDataIngredient.idIngredient = this.id;
+    console.log(form.value.nombreIngrediente);
+    console.log(form.value.cantidadIngrediente);
+    //this.service.formDataIngredient = ;
+    this.datosCompartidosService.editar(this.id, this.service.formDataIngredient);
+    this.resetForm(form);
   }
 
   resetForm(form: NgForm) {

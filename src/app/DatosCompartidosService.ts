@@ -6,7 +6,7 @@ import {IngredientModel} from "./crear-receta/ingredients.model";
 })
 export class DatosCompartidosService {
 
-  private dato: any [] = [];
+  private dato: IngredientModel [] = [];
 
   constructor() {}
 
@@ -19,6 +19,16 @@ export class DatosCompartidosService {
     return this.dato;
   }
 
+  editar(id: number, objetoEditado: IngredientModel) {
+    console.log(objetoEditado);
+
+    const index = this.dato.findIndex((dato) => dato.idIngredient === id);
+    console.log(index);
+    if (index !== -1) {
+      console.log("entro");
+      this.dato[index] = Object.assign({}, objetoEditado);
+    }
+  }
 
 
 }
