@@ -1,4 +1,4 @@
-<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+
 <mat-toolbar class="mat-elevation-z8">
   <button
     mat-icon-button
@@ -15,16 +15,22 @@
   <mat-sidenav #sidenav class="mat-elevation-z8"  opened>
 
 
-    <h4 class="name">Nombre Usuario</h4>
+    <h4 class="name">{{ inputValue }}</h4>
     <p class="designation">Usuario</p>
+
+    <button  mat-button class="menu-button" routerLink="../">
+
+      <mat-icon>exit_to_app</mat-icon>
+      <span>Cerrar Sesión</span>
+    </button>
     <mat-divider></mat-divider>
 
-    <button mat-button class="menu-button" routerLink="/show-recipes">
+    <button mat-button class="menu-button" routerLink="show-recipes">
       <mat-icon>home</mat-icon>
       <span>Inicio</span>
     </button>
 
-    <button mat-button class="menu-button" routerLink="/create-recipe" >
+    <button mat-button class="menu-button" routerLink="create-recipe" >
       <mat-icon>cookie</mat-icon>
       <span>Crear Receta</span>
     </button>
@@ -39,7 +45,7 @@
       <span>Lista de compras</span>
     </button>-->
 
-    <button mat-button class="menu-button" routerLink="/myrecipes">
+    <button mat-button class="menu-button" routerLink="myrecipes">
       <mat-icon>library_books</mat-icon>
       <span>Mis Recetas</span>
     </button>

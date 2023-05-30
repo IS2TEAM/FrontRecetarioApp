@@ -18,7 +18,7 @@ import { RegisterComponent } from './register/register.component';
 //import {AppRoutingModule} from "@angular/router";
 import { CrearRecetaComponent } from './crear-receta/crear-receta.component';
 import { MenuComponent } from './menu/menu.component';
-import { ViewRecipesComponent } from './view-ingredients/view-recipes.component';
+import { ViewIngredientsComponent } from './view-ingredients/view-ingredients.component';
 import { EditIngredientComponent } from './edit-ingredient/edit-ingredient.component';
 import { EditRecipeComponent } from './edit-recipe/edit-recipe.component';
 import { ShowRecipesComponent } from './show-recipes/show-recipes.component';
@@ -37,7 +37,7 @@ import {NgxPaginationModule} from "ngx-pagination";
     RegisterComponent,
     CrearRecetaComponent,
     MenuComponent,
-    ViewRecipesComponent,
+    ViewIngredientsComponent,
     EditIngredientComponent,
     EditRecipeComponent,
     ShowRecipesComponent,
