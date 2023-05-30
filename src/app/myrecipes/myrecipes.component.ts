@@ -17,12 +17,8 @@ export class MyrecipesComponent {
   userList: UserModel[] | undefined = [];
 
   constructor(public service: AppService, private datosLoginCompartidos: DatosCompartidosLogin, public sanitizer: DomSanitizer) {
-
     this.array = []
     this.getUserData();
-    //console.log(this.datosLoginCompartidos.obtenerDato());
-    //console.log(this.findUserIdByEmail(this.getUserData()));
-
   }
 
   findUserIdByEmail(userModel: UserModel[] | undefined): number {
