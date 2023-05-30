@@ -6,10 +6,10 @@ import {IngredientModel} from "../crear-receta/ingredients.model";
 import {Observable, of} from "rxjs";
 @Component({
   selector: 'app-view-ingredients',
-  templateUrl: './view-recipes.component.html',
-  styleUrls: ['./view-recipes.component.css']
+  templateUrl: './view-ingredients.component.html',
+  styleUrls: ['./view-ingredients.component.css']
 })
-export class ViewRecipesComponent {
+export class ViewIngredientsComponent {
 
   imgWidth = '100%';
   public array: any[] = [];

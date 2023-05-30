@@ -1,11 +1,10 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { Routes, RouterModule } from '@angular/router';
-import { LogingComponent } from './loging/loging.component';
-import { RegisterComponent } from './register/register.component';
-import { CrearRecetaComponent } from './crear-receta/crear-receta.component';
-import { MenuComponent } from './menu/menu.component';
-import { ViewRecipesComponent } from './view-ingredients/view-recipes.component';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import {LogingComponent} from './loging/loging.component';
+import {RegisterComponent} from './register/register.component';
+import {CrearRecetaComponent} from './crear-receta/crear-receta.component';
+import {MenuComponent} from './menu/menu.component';
+import {ViewIngredientsComponent} from './view-ingredients/view-ingredients.component';
 import {ShowRecipesComponent} from "./show-recipes/show-recipes.component";
 import {ShoppingListComponent} from "./shopping-list/shopping-list.component";
 import {MyrecipesComponent} from "./myrecipes/myrecipes.component";
@@ -14,30 +13,22 @@ import {DetailsRecipeComponent} from "./details-recipe/details-recipe.component"
 
 
 const routes: Routes = [
-  {path: 'myrecipes', component: MyrecipesComponent},
+  {path: "", component: LogingComponent},
   {path: 'register', component: RegisterComponent},
-  {path: 'view-ingredients', component: ViewRecipesComponent},
-  {path: 'create-recipe', component: CrearRecetaComponent},
-  {path: 'show-recipes', component: ShowRecipesComponent},
-  {path: 'shoppingList', component: ShoppingListComponent},
-  {path: 'myrecipes', component: MyrecipesComponent},
-  {path: 'edit-myrecipes/:id', component: EditRecipeComponent},
-  {path: 'details-recipe/:id', component: DetailsRecipeComponent},
-  {path: 'login', component: LogingComponent},
-
-  {path: "", component: LogingComponent },
-  {path: 'menu', component: MenuComponent, children:[
-  {path: 'register', component: RegisterComponent},
-  {path: 'view-ingredients', component: ViewRecipesComponent},
-  {path: 'create-recipe', component: CrearRecetaComponent},
-  {path: 'show-recipes', component: ShowRecipesComponent},
-  {path: 'shoppingList', component: ShoppingListComponent},
-  {path: 'myrecipes', component: MyrecipesComponent},
-  {path: 'edit-myrecipes/:id', component: EditRecipeComponent},
-  {path: 'details-recipe/:id', component: DetailsRecipeComponent}
-]
-},
+  {
+    path: 'menu', component: MenuComponent, children: [
+      {path: '', component: ShowRecipesComponent},
+      {path: 'view-ingredients', component: ViewIngredientsComponent},
+      {path: 'create-recipe', component: CrearRecetaComponent},
+      {path: 'show-recipes', component: ShowRecipesComponent},
+      {path: 'shoppingList', component: ShoppingListComponent},
+      {path: 'myrecipes', component: MyrecipesComponent},
+      {path: 'edit-myrecipes/:id', component: EditRecipeComponent},
+      {path: 'details-recipe/:id', component: DetailsRecipeComponent}
+    ]
+  },
 ];
+
 @NgModule({
   declarations: [],
   imports: [
@@ -45,4 +36,5 @@ const routes: Routes = [
   ],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

@@ -17,7 +17,7 @@ export class AppService {
 
   constructor(private http: HttpClient) {
   }
-
+  loged: boolean = false;
   formDataReceta: RecetaModel = new RecetaModel();
   formDataIngredient : IngredientModel = new IngredientModel();
   formDataUser: UserModel = new UserModel();
@@ -29,9 +29,7 @@ export class AppService {
     return this.http.get<any>(this.APIUrl + '/Recipes');
   }
 
-  getRecipeUserById(recipeId: number): Observable<any[]> {
-    return this.http.get<any>(this.APIUrl + '/Recipes/byUser?idUser='+recipeId);
-  }
+
 
  putRecipes() {
     return this.http.put(`${this.APIUrl}/Recipes/${this.formDataReceta.idRecipe}`, this.formDataReceta);
@@ -45,17 +43,63 @@ export class AppService {
     return this.http.get(`${this.APIUrl}/Users/Login/${key},${value}`).;
   }*/
 
-  getLoging() {
-    const key = `${this.formDataUser.emailUser}`;
-    const value = `${this.formDataUser.password}`;
-    return this.http.get(`${this.APIUrl}/Users/${key},${value}`).pipe(
-      tap((response: any) => {
-        // Realizar acciones adicionales aquí si es necesario
-        console.log(response); // Puedes imprimir la respuesta para verificarla en la consola
-      }),
-      map((response: any) => response === true) // Convertir la respuesta en un valor booleano
-    );
+  getRecipeUserById(recipeId: number): Observable<any[]> {
+    return this.http.get<any>(this.APIUrl + '/Recipes/byUser?idUser='+recipeId);
   }
+  getLoging(): Observable<any> {
+    const key = this.formDataUser.emailUser;
+    const value = this.formDataUser.password;
+    return this.http.get(this.APIUrl + '/Users/Login?email='+key+'password='+value);
+  }
+
+  getUserValidation():any {
+    const key = this.formDataUser.emailUser;
+    const value = this.formDataUser.password;
+    const url = this.APIUrl + `/Users/Login?email=${key}&password=${value}`;
+
+    this.http.get<any>(url).subscribe(response => {
+      const validacion = response.validacion;
+      console.log(validacion);
+      if (validacion){
+       this.loged=true;
+      }
+    },
+      error => {
+
+      });
+    return this.loged;
+  }
+
+  getUserValidation2(): Promise<boolean> {
+    const key = this.formDataUser.emailUser;
+    const value = this.formDataUser.password;
+    const url = `${this.APIUrl}/Users/Login?email=${key}&password=${value}`;
+
+    return new Promise<boolean>((resolve, reject) => {
+      this.http.get<any>(url).subscribe(
+        response => {
+          const validacion = response.validacion;
+          console.log(validacion);
+          resolve(validacion);
+        },
+        error => {
+          reject(error);
+        }
+      );
+    });
+  }
+
+
+  postUser() {
+    const data = {
+      username: this.formDataUser.username,
+      emailUser: this.formDataUser.emailUser,
+      password: this.formDataUser.password
+    };
+    return this.http.post(this.APIUrl + '/Users',data);
+  }
+
+
 
   putIngredient() {
     return this.http.put(`${this.APIUrl}/Ingredients/${this.formDataIngredient.idIngredient}`, this.formDataReceta);
@@ -78,14 +122,7 @@ export class AppService {
     return this.http.post(this.APIUrl + '/Recipes', this.formDataReceta);
   }
 
-  postUser() {
-    const data = {
-      username: this.formDataUser.username,
-      emailUser: this.formDataUser.emailUser,
-      password: this.formDataUser.password
-    };
-    return this.http.post(this.APIUrl + '/Users',data);
-  }
+
 
   uploadImg(imageFile: File) {
     const formData = new FormData();

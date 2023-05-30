@@ -22,50 +22,20 @@ export class LogingComponent {
 
 
   }
- /* putUser(id: number) {
 
-      this.service.putUser().subscribe(
-        res => {
-          // this.toastr.success("exitoso");
-          this.getLogin(id);
-        },
-        err => {
-          // this.toastr.error(err);
-          console.log(err);
-        }
-      );
 
-  }*/
-
-/*  getLogin() {
-        this.service.getLoging().subscribe(
-      res => {
-        // this.toastr.success(res.toString());
-        const tokenString = JSON.stringify(res);
-        const token = JSON.parse(tokenString);
-        console.log("token", token.token);
-
-      },
-      err => {
-        // this.toastr.error(err);
-        console.log(err);
+  async validateUser(): Promise<void> {
+    try {
+      const isValid = await this.service.getUserValidation2();
+      if (isValid) {
+        console.log("si");
+        this.route.navigate(['/menu']);
+      } else {
+        console.log("no")
       }
-    );
-  }*/
-
- getLogin(){
-    this.service.getLoging().subscribe(
-      isValid => {
-        if (isValid) {
-          this.route.navigate(['/menu']);
-        } else {
-          // Realizar acciones adicionales si la validación falla
-        }
-      },
-      err => {
-        // Manejar errores si es necesario
-      }
-    )
+    } catch (error) {
+      // Código para manejar errores de la petición HTTP
+    }
   }
 
   updateInputValue() {
