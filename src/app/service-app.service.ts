@@ -38,6 +38,8 @@ export class AppService {
     return this.http.get<any>(this.APIUrl + '/Recipes/byUser?idUser='+recipeId);
   }
 
+
+
  putRecipes() {
     return this.http.put(`${this.APIUrl}/Recipes/${this.formDataReceta.idRecipe}`, this.formDataReceta);
   }
@@ -50,12 +52,13 @@ export class AppService {
     return this.http.put(`${this.APIUrl}/user/${this.formDataUser.user}`, this.formDataUser);
   }
 
-  deleteIngredient(){
-    return this.http.delete(`${this.APIUrl}/Ingredients/${this.formDataIngredient.idIngredient}`);
+  deleteIngredient(id:number){
+    return this.http.delete(`${this.APIUrl}/Recipesingredients/${id}`);
   }
 
-  deleteRecipe(){
-    return this.http.delete(`${this.APIUrl}/Recipes/${this.formDataReceta.idRecipe}`);
+  deleteRecipe(id:number){
+    console.log(`${this.APIUrl}/Recipes/${id}`);
+    return this.http.delete(this.APIUrl + '/Recipes/'+id);
   }
 
 

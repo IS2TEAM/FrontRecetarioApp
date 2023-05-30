@@ -141,9 +141,11 @@ export class ViewRecipesComponent {
 
   }
 
-  borrarReceta(id:number) {
+  borrarIngrediente(id:number) {
     this.datosCompartidosService.borrarIngrediente(id);
   }
+
+
 
   public ingredientes: IngredientModel[] = [];
 

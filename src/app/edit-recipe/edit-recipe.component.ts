@@ -4,6 +4,10 @@ import {NgForm} from "@angular/forms";
 import {RecetaModel} from "../crear-receta/receta.model";
 import {AppService} from "../service-app.service";
 import {DomSanitizer} from "@angular/platform-browser";
+import {ActivatedRoute} from "@angular/router";
+import {IngredientModel} from "../crear-receta/ingredients.model";
+import {IngredientRecipe} from "../crear-receta/IngredientRecipe";
+import {DatosCompartidosService} from "../DatosCompartidosService";
 
 @Component({
   selector: 'app-edit-recipe',
@@ -12,7 +16,8 @@ import {DomSanitizer} from "@angular/platform-browser";
 })
 export class EditRecipeComponent {
 
-  constructor(public service: AppService, public sanitizer: DomSanitizer) {
+  constructor(public service: AppService, public sanitizer: DomSanitizer, private route: ActivatedRoute, private datosCompartidosService: DatosCompartidosService) {
+    console.log(this.route.snapshot.paramMap.get('idRecipe'))
   }
 
   imgWidth = '100%';
@@ -42,6 +47,11 @@ export class EditRecipeComponent {
     this.imageUrl = imageUrl;
   }
 
+  populateForm(item: any) {
+    const idRecipe = this.route.snapshot.paramMap.get('idRecipe');
+
+  }
+
   handleFileInput(event: Event) {
     const target = event.target as HTMLInputElement;
     // @ts-ignore
@@ -54,6 +64,39 @@ export class EditRecipeComponent {
   clearPreview() {
     this.imageUrl = null;
   }
+
+  arrayI:any = new IngredientModel();
+  addIngredient() {
+
+    //this.service.formDataIngredientRecipe.idRecipe = 3;
+    //this.service.formDataIngredientRecipe.idIngredient = this.service.formDataIngredient.idIngredient;
+    //this.service.formDataIngredientRecipe.quantity = this.service.formDataIngredient.quantity;
+    //this.service.formDataIngredientRecipe.idRecipeIngredient = 0;
+    //console.log(this.service.formDataIngredient.nameIngredient);
+    this.arrayI = this.service.formDataIngredient;
+
+    this.datosCompartidosService.guardarDato(this.arrayI);
+
+  }
+
+
+  convertArray(ingredients: IngredientModel[], idRecipe: number): IngredientRecipe[] {
+    const convertedArray: IngredientRecipe[] = [];
+
+    for (const ingredient of ingredients) {
+      const convertedIngredient: IngredientRecipe = {
+        idRecipeIngredient: 0,
+        idIngredient: ingredient.idIngredient,
+        idRecipe: idRecipe,
+        quantity: ingredient.quantity,
+      };
+
+      convertedArray.push(convertedIngredient);
+    }
+
+    return convertedArray;
+  }
+
 
   addRecipe(form: NgForm) {
     if (this.imageUrl != null && this.imageFile != null) {

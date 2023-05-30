@@ -17,14 +17,15 @@ export class MyrecipesComponent {
     this.service.getRecipeUserById(1).subscribe(data => {
       this.array = data;
     });
-
-
-
-
   }
 
   populateForm(selectedRecord: RecetaModel) {
     this.service.formDataReceta = Object.assign({}, selectedRecord);
   }
 
+  borrarReceta(idRecipe: number) {
+    console.log(idRecipe);
+    this.service.deleteIngredient(idRecipe);
+    this.service.deleteRecipe(idRecipe);
+  }
 }

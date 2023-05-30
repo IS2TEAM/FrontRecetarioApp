@@ -24,9 +24,8 @@
           </div>
           <div>
 <!--          aqui se debe llamar la accion para que cuando pulse el boton se borre la receta-->
-          <button   type="submit"
-                  class="btn btn-danger" style="vertical-align: middle;">Borrar
-          </button>
+
+            <button type="submit" class="btn btn-danger" style="vertical-align: middle;" (click)="borrarReceta(item.idRecipe)">Borrar</button>
           </div>
         </div>
       </div>
