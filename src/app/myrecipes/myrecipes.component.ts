@@ -19,6 +19,8 @@ export class MyrecipesComponent {
     });
   }
 
+
+
   populateForm(selectedRecord: RecetaModel) {
     this.service.formDataReceta = Object.assign({}, selectedRecord);
   }

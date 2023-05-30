@@ -5,6 +5,7 @@ import {NgForm} from "@angular/forms";
 import {UserModel} from "./user.model";
 import { Routes, RouterModule } from '@angular/router';
 import {DataService} from "../shared/data.service";
+import {DatosCompartidosService} from "../DatosCompartidosLogin";
 
 @Component({
   selector: 'app-loging',
@@ -17,7 +18,8 @@ export class LogingComponent {
     public dataService: DataService,
 
     public service: AppService,
-    private route: Router
+    private route: Router,
+    private datosCompartidosService:DatosCompartidosService
   ) {
 
 
@@ -29,6 +31,7 @@ export class LogingComponent {
       const isValid = await this.service.getUserValidation2();
       if (isValid) {
         console.log("si");
+        this.datosCompartidosService.guardarDato(this.service.formDataUser.emailUser);
         this.route.navigate(['/menu']);
       } else {
         console.log("no")

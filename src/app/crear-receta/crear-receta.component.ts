@@ -84,7 +84,7 @@ export class CrearRecetaComponent implements OnInit{
     //console.log(this.service.formDataIngredient.nameIngredient);
     this.service.formDataIngredient.idIngredient = this.findIngredientIdByName(this.service.formDataIngredient.nameIngredient);
     this.arrayI = this.service.formDataIngredient;
-    //console.log(this.arrayI);
+    console.log(this.arrayI);
     this.datosCompartidosService.guardarDato(this.arrayI);
 
   }
