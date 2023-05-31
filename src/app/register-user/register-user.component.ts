@@ -29,4 +29,8 @@ export class RegisterUserComponent {
     form.form.reset();
     this.service.formDataUser = new UserModel();
   };
+
+  goBack() {
+    window.history.back();
+  }
 }

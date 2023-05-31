@@ -18,7 +18,7 @@
           <h3 class="card-title" >{{item.recipesName}}</h3>
           <a class= "a"(click)="populateForm(item)" [routerLink]="['../details-recipe/', item.idRecipe]">Detalles</a>
           <div>
-          <button (click)="populateForm(item)" [routerLink]="['/edit-myrecipes/', item.idRecipe]" type="submit"
+          <button (click)="populateForm(item)" [routerLink]="['../edit-myrecipes/', item.idRecipe]" type="submit"
                   class="btn btn-primary" style="vertical-align: middle;">Editar
           </button>
           </div>

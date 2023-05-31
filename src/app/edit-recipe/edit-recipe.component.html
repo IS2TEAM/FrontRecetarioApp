@@ -30,8 +30,8 @@
             <div class="form-group ">
               <label class="parrafo-responsivo2" for="nombreIngrediente">Nombre del Ingrediente: </label>
               <select class="form-select" id="nombreIngrediente" name="nombreIngrediente" required [(ngModel)]="service.formDataIngredient.nameIngredient">
-                <option class="parrafo-responsivo2" value="" disabled selected>Seleccione un ingrediente</option>
-                <option *ngFor="let item of inspectionList" [value]="item.ingredientName">{{ item.ingredientName }}</option>
+                <option value="" disabled selected>Seleccione un ingrediente</option>
+                <option *ngFor="let item of ingredientList" [value]="item.nameIngredient">{{ item.nameIngredient }}</option>
               </select>
             </div>
             <div class="form-group">

@@ -6,26 +6,39 @@
     <div class="col-lg-6">
       <div class="card shadow-lg">
         <div class="card-header">
-          <img src="https://img.freepik.com/vector-gratis/ilustracion-concepto-chef-femenino_114360-12051.jpg?w=740&t=st=1684801870~exp=1684802470~hmac=1a2c6579005c9591d5e099480b01762cb5316c8e7a222679c771d6144b52253a" alt="Logo" class="img-fluid mx-auto d-block mb-3" width="200">
+          <img
+            alt="Logo"
+            class="img-fluid mx-auto d-block mb-3" src="https://img.freepik.com/vector-gratis/ilustracion-concepto-chef-femenino_114360-12051.jpg?w=740&t=st=1684801870~exp=1684802470~hmac=1a2c6579005c9591d5e099480b01762cb5316c8e7a222679c771d6144b52253a" width="200">
           <h4 class="text-center mb-0">Crear Cuenta</h4>
         </div>
         <div class="card-body">
-          <form novalidate autocomplete="off" #form="ngForm" (submit)="registerUser(form)">
+          <form #form="ngForm" (submit)="registerUser(form)" autocomplete="off" novalidate>
             <div class="form-group">
               <label for="email">Nombre de Usuario</label>
-              <input type="email" class="form-control" id="user_name" placeholder="Ingresa tu correo electrónico" name="username" #username="ngModel" [(ngModel)]="service.formDataUser.username">
+              <input #username="ngModel" [(ngModel)]="service.formDataUser.username" class="form-control" id="user_name"
+                     name="username" placeholder="Ingresa tu correo electrónico" type="email">
             </div>
             <div class="form-group">
               <label for="email">Correo electrónico</label>
-              <input type="email" class="form-control" id="email" placeholder="Ingresa tu correo electrónico" name="emailUser" #emailUser="ngModel" [(ngModel)]="service.formDataUser.emailUser">
+              <input #emailUser="ngModel" [(ngModel)]="service.formDataUser.emailUser" class="form-control" id="email"
+                     name="emailUser" placeholder="Ingresa tu correo electrónico" type="email">
             </div>
             <div class="form-group">
               <label for="password">Contraseña</label>
-              <input type="password" class="form-control" id="password" placeholder="Ingresa tu contraseña" name="password" #password="ngModel" [(ngModel)]="service.formDataUser.password">
+              <input #password="ngModel" [(ngModel)]="service.formDataUser.password" class="form-control" id="password"
+                     name="password" placeholder="Ingresa tu contraseña" type="password">
             </div>
             <div class="form-group text-center">
-              <button type="submit" class="btn btn-primary">Registrar</button>
+              <div class="row">
+                <div class="col-md-6 text-md-right">
+                  <button (click)="goBack()" class="btn btn-primary">Regresar</button>
+                </div>
+                <div class="col-md-6 text-md-left">
+                  <button class="btn btn-primary" type="submit">Registrar</button>
+                </div>
+              </div>
             </div>
+
           </form>
         </div>
 

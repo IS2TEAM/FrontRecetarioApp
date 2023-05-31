@@ -36,7 +36,6 @@
           <select class="form-select" id="nombreIngrediente" name="nombreIngrediente" required [(ngModel)]="service.formDataIngredient.nameIngredient">
             <option value="" disabled selected>Seleccione un ingrediente</option>
             <option *ngFor="let item of ingredientList" [value]="item.nameIngredient">{{ item.nameIngredient }}</option>
-
           </select>
         </div>
         <div class="form-group mt-3">

@@ -34,7 +34,7 @@ export class CreateRecipeComponent implements OnInit {
   userList: UserModel[] | undefined = [];
 
   constructor(public service: AppService, public toastr: ToastrService, public sanitizer: DomSanitizer, public RecetasService: RecipeService, private datosCompartidosService: DatosCompartidosService, private datosCompartidos: DatosCompartidosLogin) {
-    this.array = []
+    this.array = [];
     this.getUserData();
     this.ngOnInit();
   }
@@ -135,8 +135,8 @@ export class CreateRecipeComponent implements OnInit {
   addRecipe(form: NgForm) {
 
     if (this.imageUrl != null && this.imageFile != null) {
-      this.service.uploadImg(this.imageFile).subscribe((res: any): void => {
-          this.service.formDataReceta.recipePhoto = res;
+      this.service.uploadImg(this.imageFile).subscribe((res: string): void => {
+          this.service.formDataReceta.recipePhoto = JSON.stringify(res).split("\"")[3].replace("\"","");
           this.toastr.success("IMAGEN CREADA CON EXITO", "EXITOSO!");
           this.postRecipe(form);
         },

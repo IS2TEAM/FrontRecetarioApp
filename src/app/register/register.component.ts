@@ -35,4 +35,7 @@ export class RegisterComponent {
   };
 
 
+  goBack() {
+    window.history.back();
+  }
 }
