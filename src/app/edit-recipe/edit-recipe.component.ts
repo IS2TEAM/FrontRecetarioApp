@@ -138,7 +138,7 @@ export class EditRecipeComponent {
 
 
   addRecipe(form: NgForm) {
-    if (!this.imageUrl?.includes("azure")) {
+    if (this.imageUrl?.includes("https://imagenesmicocinitapp.blob.core.windows.net") === false) {
       if (this.imageUrl != null && this.imageFile != null) {
         this.service.uploadImg(this.imageFile).subscribe((res: string): void => {
             this.service.formDataReceta.recipePhoto = JSON.stringify(res).split("\"")[3].replace("\"", "");
@@ -153,8 +153,10 @@ export class EditRecipeComponent {
         this.putRecipe(form);
       }
     } else {
-      this.service.formDataReceta.recipePhoto = "";
-      this.putRecipe(form);
+      if (this.imageUrl != null) {
+        this.service.formDataReceta.recipePhoto = this.imageUrl;
+        this.putRecipe(form);
+      }
     }
   }
 
@@ -167,11 +169,12 @@ export class EditRecipeComponent {
   private putRecipe(form: NgForm) {
     this.service.putRecipes().subscribe(
       (res: any) => {
-        this.toastr.success("RECETA CREADA CON EXITO", "EXITOSO!");
+        this.toastr.success("RECETA EDITADA CON EXITO", "EXITOSO!");
+        window.history.back();
         this.resetForm(form);
       },
       (err: any) => {
-        this.toastr.error("OCURRIO UN ERROR AL CREAR LA RECETA", "ERROR!");
+        this.toastr.error("OCURRIO UN ERROR AL EDITAR LA RECETA", "ERROR!");
       }
     );
     this.service.getlast().then((res: RecetaModel) => {
