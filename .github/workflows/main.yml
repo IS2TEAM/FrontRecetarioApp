@@ -39,6 +39,6 @@ jobs:
         uses: azure/webapps-deploy@v2
         with:
           app-name: 'micocinitapp'
-          slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_F43A3578A8964629A5D623C027F16C0F }}
+          slot-name: 'production'
+          publish-profile: ${{ secrets.AzureAppService_PublishProfile_c71597108fdf4d87a2d384d3341980e6 }}
           package: .
