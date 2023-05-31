@@ -1,5 +1,5 @@
 import {Component, Sanitizer} from '@angular/core';
-import {RecetaModel} from "../create-recipe/receta.model";
+import {RecetaModel} from "../models/receta.model";
 import {AppService} from "../service-app.service";
 import {DatosCompartidosLogin} from "../DatosCompartidosLogin";
 import {UserModel} from "../loging/user.model";

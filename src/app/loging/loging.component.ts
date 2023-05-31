@@ -6,6 +6,7 @@ import {UserModel} from "./user.model";
 import { Routes, RouterModule } from '@angular/router';
 import {DataService} from "../shared/data.service";
 import {DatosCompartidosLogin} from "../DatosCompartidosLogin";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-loging',
@@ -20,6 +21,7 @@ export class LogingComponent {
     public service: AppService,
     private route: Router,
     private datosCompartidosService:DatosCompartidosLogin,
+    private toastr:ToastrService
   ) {
 
 
@@ -32,13 +34,13 @@ export class LogingComponent {
       if (isValid) {
         console.log("si");
         this.datosCompartidosService.guardarDato(this.service.formDataUser.emailUser);
-
         this.route.navigate(['/menu']);
+        this.toastr.success("Se creo la lista de compras con exito", "EXITOSO!");
       } else {
         console.log("no")
       }
     } catch (error) {
-      // Código para manejar errores de la petición HTTP
+      this.toastr.error("Ocurrio un error al iniciar sesion, intente de nuevo", "ERROR!");
     }
   }
 

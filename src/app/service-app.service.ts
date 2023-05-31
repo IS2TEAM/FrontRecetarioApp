@@ -1,15 +1,15 @@
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
-import {RecetaModel} from "./create-recipe/receta.model";
-import {IngredientModel} from "./create-recipe/ingredients.model";
+import {RecetaModel} from "./models/receta.model";
+import {IngredientModel} from "./models/ingredients.model";
 import {UserModel} from "./loging/user.model";
-import {PurchasedIngredientsModel} from "./shopping-list/purchasedIngredients.model";
+import {PurchasedIngredientsModel} from "./models/purchasedIngredients.model";
 import {ShoppingListModel} from "./shopping-list/shopping-list.model";
 import { tap, map } from 'rxjs/operators';
-import {IngredientRecipeModel} from "./create-recipe/IngredientRecipe.model";
+import {IngredientRecipeModel} from "./models/IngredientRecipe.model";
 import {ModelShoppingListIngredient} from "./shopping-list/shoppingList.model";
-import {IngredientsUsersModel} from "./create-recipe/IngredientUser.model";
+import {IngredientsUsersModel} from "./models/IngredientUser.model";
 
 
 @Injectable({

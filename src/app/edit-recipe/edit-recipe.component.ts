@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
 import {Observable} from "rxjs";
 import {NgForm} from "@angular/forms";
-import {RecetaModel} from "../create-recipe/receta.model";
+import {RecetaModel} from "../models/receta.model";
 import {AppService} from "../service-app.service";
 import {DomSanitizer} from "@angular/platform-browser";
 import {ActivatedRoute} from "@angular/router";
-import {IngredientModel} from "../create-recipe/ingredients.model";
-import {IngredientRecipeModel} from "../create-recipe/IngredientRecipe.model";
+import {IngredientModel} from "../models/ingredients.model";
+import {IngredientRecipeModel} from "../models/IngredientRecipe.model";
 import {DatosCompartidosService} from "../DatosCompartidosService";
 
 @Component({

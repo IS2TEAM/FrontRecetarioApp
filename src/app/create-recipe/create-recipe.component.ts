@@ -2,13 +2,13 @@ import {Component, OnInit} from '@angular/core';
 import {Observable} from "rxjs";
 import {AppService} from "../service-app.service";
 import {NgForm} from "@angular/forms";
-import {RecetaModel} from "./receta.model";
+import {RecetaModel} from "../models/receta.model";
 import {DomSanitizer} from '@angular/platform-browser';
 import {RecipeService} from "../view-ingredients/RecipeService.service";
-import {IngredientRecipeModel} from "./IngredientRecipe.model";
+import {IngredientRecipeModel} from "../models/IngredientRecipe.model";
 import {DatosCompartidosService} from '../DatosCompartidosService';
 import {DatosCompartidosLogin} from '../DatosCompartidosLogin';
-import {IngredientModel} from "./ingredients.model";
+import {IngredientModel} from "../models/ingredients.model";
 import {ToastrService} from "ngx-toastr";
 import {UserModel} from "../loging/user.model";
 

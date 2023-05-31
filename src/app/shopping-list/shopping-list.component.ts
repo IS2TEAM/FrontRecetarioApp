@@ -1,13 +1,12 @@
-import { Component } from '@angular/core';
-import {Observable, of} from "rxjs";
-import {ActivatedRoute, Router} from "@angular/router";
-import {RecetaModel} from "../create-recipe/receta.model";
+import {Component} from '@angular/core';
+import {Observable} from "rxjs";
+import {Router} from "@angular/router";
 import {RecipeService} from "../view-ingredients/RecipeService.service";
 import {AppService} from "../service-app.service";
 import {ShoppingListModel} from "./shopping-list.model";
-import {IngredientModel} from "../create-recipe/ingredients.model";
-import {IngredientRecipeModel} from "../create-recipe/IngredientRecipe.model";
-import {IngredientsUsersModel} from "../create-recipe/IngredientUser.model";
+import {IngredientRecipeModel} from "../models/IngredientRecipe.model";
+import {IngredientsUsersModel} from "../models/IngredientUser.model";
+import {ToastrService} from "ngx-toastr";
 
 @Component({
   selector: 'app-shopping-list',
@@ -15,20 +14,21 @@ import {IngredientsUsersModel} from "../create-recipe/IngredientUser.model";
   styleUrls: ['./shopping-list.component.css']
 })
 export class ShoppingListComponent {
-  public page: number=1;
-  inspectionList$!:Observable<any[]>;
-  inspectionList: any[]=[];
+  public page: number = 1;
+  inspectionList$!: Observable<any[]>;
+  inspectionList: any[] = [];
   sortColumn: string = 'name';
   sortAsc: boolean = true;
   selectedState = 1;
-  activoSeleccionado: string ='1';
-  listFilter: any[]=[]
+  activoSeleccionado: string = '1';
+  listFilter: any[] = [];
   public array: any[] = [];
+
   constructor(
     private RecetasService: RecipeService,
     public service: AppService,
-    private router: Router)
-  {
+    private router: Router,
+    private toastr: ToastrService) {
     this.array = [];
     const ingredients: IngredientsUsersModel[] = [];
     const temp = this.router.url.split("/");
@@ -63,5 +63,9 @@ export class ShoppingListComponent {
 
   populateForm(selectedRecord: ShoppingListModel) {
     this.service.formDataShopingList = Object.assign({}, selectedRecord);
+  }
+
+  save() {
+    this.toastr.success("Se creo la lista de compras con exito", "EXITOSO!");
   }
 }

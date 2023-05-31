@@ -1,9 +1,9 @@
 import {Component} from '@angular/core';
 import {AppService} from "../service-app.service";
-import {IngredientModel} from "../create-recipe/ingredients.model";
+import {IngredientModel} from "../models/ingredients.model";
 import {ActivatedRoute, Router} from "@angular/router";
-import {IngredientRecipeModel} from "../create-recipe/IngredientRecipe.model";
-import {IngredientsUsersModel} from "../create-recipe/IngredientUser.model";
+import {IngredientRecipeModel} from "../models/IngredientRecipe.model";
+import {IngredientsUsersModel} from "../models/IngredientUser.model";
 
 @Component({
   selector: 'app-details-recipe',

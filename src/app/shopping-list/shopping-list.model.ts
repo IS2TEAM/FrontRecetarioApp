@@ -1,5 +1,5 @@
-import {IngredientModel} from "../create-recipe/ingredients.model";
-import {PurchasedIngredientsModel} from "./purchasedIngredients.model";
+import {IngredientModel} from "../models/ingredients.model";
+import {PurchasedIngredientsModel} from "../models/purchasedIngredients.model";
 
 export class ShoppingListModel{
 

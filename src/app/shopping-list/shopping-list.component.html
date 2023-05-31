@@ -8,7 +8,7 @@
       <div class="table-responsive">
         <hr/>
 
-      <div class="container">
+        <div class="container">
           <table class="table table-striped table-bordered table-hover table table-reflow table-responsive">
             <thead class="table table-success">
             <tr>
@@ -28,26 +28,22 @@
 
             <tr *ngFor="let item of array">
               <td>{{item.nameIngredient}}</td>
-              <td><input type="text"  name="nombretienda" #NameShop="ngModel" [(ngModel)]="service.formIngredientShopee.NameShop"
-                         [class.invalid]="NameShop.invalid && NameShop.touched">
+              <td>
+                <input type="text" name="nombretienda" [(ngModel)]="item.nameShop">
               </td>
-              <td><input type="text" type="text"  name="PriceShop" #PriceShop="ngModel" [(ngModel)]="service.formIngredientShopee.PriceShop"
-                         [class.invalid]="PriceShop.invalid && PriceShop.touched"></td>
+              <td>
+                <input type="text" name="PriceShop" [(ngModel)]="item.priceShop">
+              </td>
             </tr>
-
-
-
-
-
             </tbody>
           </table>
-          <pagination-controls (pageChange)="page = $event" previousLabel="Anterior"
-                               nextLabel="Siguiente"></pagination-controls>
+          <pagination-controls (pageChange)="page = $event" nextLabel="Siguiente"
+                               previousLabel="Anterior"></pagination-controls>
         </div>
       </div>
     </div>
-        <button class="btn-primary">Guardar</button>
-      </div>
-    </div>
+    <button class="btn-primary" (click)="save()">Guardar</button>
+  </div>
+</div>
 
 

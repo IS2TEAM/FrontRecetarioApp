@@ -1,10 +1,11 @@
-import { Component } from '@angular/core';
-import {RecetaModel} from "../create-recipe/receta.model";
+import {Component} from '@angular/core';
+import {RecetaModel} from "../models/receta.model";
 import {AppService} from "../service-app.service";
 import {RecipeService} from "./RecipeService.service";
-import {IngredientModel} from "../create-recipe/ingredients.model";
-import {Observable, of} from "rxjs";
-import { DatosCompartidosService } from '../DatosCompartidosService';
+import {IngredientModel} from "../models/ingredients.model";
+import {Observable} from "rxjs";
+import {DatosCompartidosService} from '../DatosCompartidosService';
+
 @Component({
   selector: 'app-view-ingredients',
   templateUrl: './view-ingredients.component.html',
@@ -23,19 +24,30 @@ export class ViewIngredientsComponent {
   currentNameFilter: string = "";
   tamanio: number = 0;
 
-  public page: number=1;
-  inspectionList$!:Observable<any[]>;
-  inspectionList: any[]=[];
+  public page: number = 1;
+  inspectionList$!: Observable<any[]>;
+  inspectionList: any[] = [];
   sortColumn: string = 'name';
   sortAsc: boolean = true;
   selectedState = 1;
-  activoSeleccionado: string ='1';
-  listFilter: any[]=[]
-
+  activoSeleccionado: string = '1';
+  listFilter: any[] = []
 
 
   iconName = 'keyboard_arrow_down';
   clickedName: boolean = true;
+  iconSub = 'keyboard_arrow_down';
+  clickedSub: boolean = true;
+  iconDate = 'keyboard_arrow_down';
+  clickedDate: boolean = true;
+  iconId = 'keyboard_arrow_down';
+  clickedId: boolean = true;
+  public ingredientes: IngredientModel[] = [];
+
+  constructor(private RecetasService: RecipeService, public service: AppService, private datosCompartidosService: DatosCompartidosService) {
+    this.ngOnInit();
+
+  }
 
   changeIconName() {
     if (this.clickedName == true) {
@@ -52,11 +64,6 @@ export class ViewIngredientsComponent {
       this.iconSub = 'keyboard_arrow_down'
     }
   }
-
-
-
-  iconSub = 'keyboard_arrow_down';
-  clickedSub: boolean = true;
 
   changeIconLn() {
     if (this.clickedSub == true) {
@@ -75,12 +82,6 @@ export class ViewIngredientsComponent {
     }
   }
 
-
-
-  iconDate = 'keyboard_arrow_down';
-  clickedDate: boolean = true;
-
-
   changeIconDate() {
     if (this.clickedId == true) {
       this.iconSub = 'keyboard_arrow_down'
@@ -97,9 +98,6 @@ export class ViewIngredientsComponent {
       this.iconSub = 'keyboard_arrow_down'
     }
   }
-
-  iconId = 'keyboard_arrow_down';
-  clickedId: boolean = true;
 
   changeIconId() {
     if (this.clickedId == true) {
@@ -122,32 +120,14 @@ export class ViewIngredientsComponent {
     this.service.formDataReceta = Object.assign({}, selectedRecord);
   }
 
-
-
-
   filterByName(filter: string) {
     this.currentNameFilter = filter;
     //this.getRecipe(this.currentPage, this.pageSize, this.currentSortOrder, this.curreentSortBy, this.currentNameFilter);
   }
 
-
-
-  private getMaxPage(): number {
-    return (this.tamanio / this.pageSize);
-  }
-
-  constructor(private RecetasService: RecipeService, public service: AppService,private datosCompartidosService: DatosCompartidosService) {
-    this.ngOnInit();
-
-  }
-
-  borrarIngrediente(id:number) {
+  borrarIngrediente(id: number) {
     this.datosCompartidosService.borrarIngrediente(id);
   }
-
-
-
-  public ingredientes: IngredientModel[] = [];
 
   ngOnInit(): void {
     //this.inspectionList$ = this.datosCompartidosService.obtenerDato();
@@ -157,6 +137,7 @@ export class ViewIngredientsComponent {
     //  this.inspectionList = inspectionList;
     //});
   }
+
   getInspectionList() {
     this.inspectionList$ = this.service.getInspectionList();
     this.inspectionList$.subscribe((inspectionList) => {
@@ -164,8 +145,11 @@ export class ViewIngredientsComponent {
     });
   }
 
-
   back() {
     window.history.back();
+  }
+
+  private getMaxPage(): number {
+    return (this.tamanio / this.pageSize);
   }
 }
