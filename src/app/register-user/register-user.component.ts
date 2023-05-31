@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {ToastrService} from "ngx-toastr";
 import {NgForm} from "@angular/forms";
 import {AppService} from "../service-app.service";
@@ -10,17 +10,19 @@ import {UserModel} from "../loging/user.model";
   styleUrls: ['./register-user.component.css']
 })
 export class RegisterUserComponent {
-  constructor( public service:AppService) {
+  constructor(public service: AppService, public toastr: ToastrService
+  ) {
   }
 
   registerUser(form: NgForm) {
     this.service.postUser().subscribe(
       (res: any) => {
-        // this.toastr.success('Usuario creado con exito', 'Inscripciones UPTC');
+        this.toastr.success("USUARIO REGISTRADO CON EXITO", "EXITOSO!");
         this.resetForm(form);
+        this.goBack();
       },
       (err: any) => {
-        // this.toastr.error(err);
+        this.toastr.error("OCURRIO UN ERROR AL REGISTRARSE", "ERROR!");
       }
     );
   }
