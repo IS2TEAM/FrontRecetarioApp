@@ -6,7 +6,7 @@ import {Observable} from "rxjs";
   providedIn: 'root'
 })
 export class RecipeService {
-  private baseUrlRecipeGetAll: string | null = 'https://localhost:7045/api/Ingredients';
+  private baseUrlRecipeGetAll: string | null = 'https://recetarioapp.azurewebsites.net/api/Ingredients';
 
 
 
@@ -14,12 +14,12 @@ export class RecipeService {
   constructor(private http:HttpClient) { }
 
   addInspection(data:any){
-    return this.http.post('https://localhost:7045/api/Ingredients', data);
+    return this.http.post('https://recetarioapp.azurewebsites.net/api/Ingredients', data);
   }
 
 
   getInspectionList(): Observable<any[]> {
-    return this.http.get<any>('https://localhost:7045/api/Ingredients');
+    return this.http.get<any>('https://recetarioapp.azurewebsites.net/api/Ingredients');
   }
 
 }

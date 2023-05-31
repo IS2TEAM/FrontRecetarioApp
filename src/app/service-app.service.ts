@@ -16,7 +16,7 @@ import {IngredientsUsersModel} from "./models/IngredientUser.model";
   providedIn: 'root'
 })
 export class AppService {
-  readonly APIUrl = "https://localhost:7045/api";
+  readonly APIUrl = "https://recetarioapp.azurewebsites.net/api";
 
   constructor(private http: HttpClient) {
   }
