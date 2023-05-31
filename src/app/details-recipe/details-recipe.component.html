@@ -84,7 +84,8 @@
           </div>
         </div>
 
-    <button class="btn btn-secondary button.small-screen" routerLink="/shoppingList">Comenzar lista de compras</button>
+    <button class="btn btn-secondary button.small-screen" [routerLink]="['../../shoppingList/', service.formDataReceta.idRecipe]">Comenzar lista de compras</button>
+
 
     </div>
 

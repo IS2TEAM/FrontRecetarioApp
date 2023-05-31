@@ -13,6 +13,7 @@
             <thead class="table table-success">
             <tr>
               <th>Nombre Ingrediente</th>
+
               <th class="text-left">
                 <div class="d-flex justify-content-between">
                   <span>Nombre Tienda</span>
@@ -24,14 +25,20 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-              <!--          <tr *ngFor="let item of array">-->
-              <td>name aqui</td>
 
-              <!--            <td>{{item.name_ingredient}}</td>-->
-              <td><input type="text"></td>
-              <td><input type="text"></td>
+            <tr *ngFor="let item of array">
+              <td>{{item.nameIngredient}}</td>
+              <td><input type="text"  name="nombretienda" #NameShop="ngModel" [(ngModel)]="service.formIngredientShopee.NameShop"
+                         [class.invalid]="NameShop.invalid && NameShop.touched">
+              </td>
+              <td><input type="text" type="text"  name="PriceShop" #PriceShop="ngModel" [(ngModel)]="service.formIngredientShopee.PriceShop"
+                         [class.invalid]="PriceShop.invalid && PriceShop.touched"></td>
             </tr>
+
+
+
+
+
             </tbody>
           </table>
           <pagination-controls (pageChange)="page = $event" previousLabel="Anterior"

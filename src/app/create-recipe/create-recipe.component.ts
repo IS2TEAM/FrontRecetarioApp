@@ -14,11 +14,11 @@ import {UserModel} from "../loging/user.model";
 
 
 @Component({
-  selector: 'app-crear-receta',
-  templateUrl: './crear-receta.component.html',
-  styleUrls: ['./crear-receta.component.css']
+  selector: 'app-create-recipe',
+  templateUrl: './create-recipe.component.html',
+  styleUrls: ['./create-recipe.component.css']
 })
-export class CrearRecetaComponent implements OnInit {
+export class CreateRecipeComponent implements OnInit {
 
   imgWidth = '100%';
   imageUrl: string | null = null;

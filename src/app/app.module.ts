@@ -16,7 +16,7 @@ import {FormsModule} from "@angular/forms";
 import { LogingComponent } from './loging/loging.component';
 import { RegisterComponent } from './register/register.component';
 //import {AppRoutingModule} from "@angular/router";
-import { CrearRecetaComponent } from './crear-receta/crear-receta.component';
+import { CreateRecipeComponent } from './create-recipe/create-recipe.component';
 import { MenuComponent } from './menu/menu.component';
 import { ViewIngredientsComponent } from './view-ingredients/view-ingredients.component';
 import { EditIngredientComponent } from './edit-ingredient/edit-ingredient.component';
@@ -35,7 +35,7 @@ import {NgxPaginationModule} from "ngx-pagination";
     AppComponent,
     LogingComponent,
     RegisterComponent,
-    CrearRecetaComponent,
+    CreateRecipeComponent,
     MenuComponent,
     ViewIngredientsComponent,
     EditIngredientComponent,

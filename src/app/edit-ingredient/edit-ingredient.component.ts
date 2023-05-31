@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {AppService} from "../service-app.service";
 import {DomSanitizer} from "@angular/platform-browser";
 import {Observable} from "rxjs";
-import {IngredientModel} from "../crear-receta/ingredients.model";
+import {IngredientModel} from "../create-recipe/ingredients.model";
 import  {ActivatedRoute} from "@angular/router";
 import {NgForm} from "@angular/forms";
 import {DatosCompartidosService} from "../DatosCompartidosService";

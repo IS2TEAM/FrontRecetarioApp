@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import {RecetaModel} from "../crear-receta/receta.model";
+import {RecetaModel} from "../create-recipe/receta.model";
 import {AppService} from "../service-app.service";
 import {RecipeService} from "./RecipeService.service";
-import {IngredientModel} from "../crear-receta/ingredients.model";
+import {IngredientModel} from "../create-recipe/ingredients.model";
 import {Observable, of} from "rxjs";
 import { DatosCompartidosService } from '../DatosCompartidosService';
 @Component({

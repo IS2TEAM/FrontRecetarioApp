@@ -1,13 +1,15 @@
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
-import {RecetaModel} from "./crear-receta/receta.model";
-import {IngredientModel} from "./crear-receta/ingredients.model";
+import {RecetaModel} from "./create-recipe/receta.model";
+import {IngredientModel} from "./create-recipe/ingredients.model";
 import {UserModel} from "./loging/user.model";
 import {PurchasedIngredientsModel} from "./shopping-list/purchasedIngredients.model";
 import {ShoppingListModel} from "./shopping-list/shopping-list.model";
 import { tap, map } from 'rxjs/operators';
-import {IngredientRecipeModel} from "./crear-receta/IngredientRecipe.model";
+import {IngredientRecipeModel} from "./create-recipe/IngredientRecipe.model";
+import {ModelShoppingListIngredient} from "./shopping-list/shoppingList.model";
+import {IngredientsUsersModel} from "./create-recipe/IngredientUser.model";
 
 
 @Injectable({
@@ -22,6 +24,7 @@ export class AppService {
   formDataReceta: RecetaModel = new RecetaModel();
   formDataIngredient : IngredientModel = new IngredientModel();
   formDataUser: UserModel = new UserModel();
+  formIngredientShopee: ModelShoppingListIngredient = new ModelShoppingListIngredient();
   formDataIngredientRecipe: IngredientRecipeModel = new IngredientRecipeModel();
 
   formDataPurchasedIngredientes: PurchasedIngredientsModel = new PurchasedIngredientsModel();
@@ -42,7 +45,24 @@ export class AppService {
       .then(response => response as RecetaModel);
   }
 
-  getRecipeUserById(recipeId: number): Observable<any[]> {
+  getRecipeIngredient(id: string): Observable<IngredientRecipeModel[]>{
+    return this.http.get<any>(this.APIUrl+`/Recipesingredients/getIngredientRecipe/${id}`);
+  }
+
+
+
+/*
+getRecipeIngredient2(id: number): Observable<any[]> {
+  return this.http.get<any[]>(this.APIUrl + `Recipesingredients/getIngredientRecipe/${id}`)
+    .pipe(
+      map(response => response as any[])
+    );
+}
+*/
+
+
+
+getRecipeUserById(recipeId: number): Observable<any[]> {
     return this.http.get<any>(this.APIUrl + '/Recipes/byUser?idUser='+recipeId);
   }
 
@@ -164,8 +184,8 @@ export class AppService {
     return this.http.get<RecetaModel>(`${this.APIUrl}/Recipes/${recipeId}`);
   }
 
-  getIngredientById(ingredientId: number): Observable<IngredientModel> {
-    return this.http.get<IngredientModel>(`${this.APIUrl}/Recipes/${ingredientId}`);
+  getIngredientById(ingredientId: number): Observable<IngredientsUsersModel> {
+    return this.http.get<IngredientsUsersModel>(`${this.APIUrl}/IngredientsUsers/${ingredientId}`);
   }
 
   getUserById(ingredientId: number): Observable<UserModel> {

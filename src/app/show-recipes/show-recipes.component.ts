@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {RecetaModel} from "../crear-receta/receta.model";
+import {RecetaModel} from "../create-recipe/receta.model";
 import {AppService} from "../service-app.service";
 
 @Component({
